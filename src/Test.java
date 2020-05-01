@@ -9,8 +9,12 @@ public class Test {
 		System.out.println("I was here");
 		System.out.println("Andrew was here too...");
 		System.out.println("Testing pull request");
+<<<<<<< HEAD
 
 		System.out.println("Woah git is a powerful tool!");
+=======
+		
+>>>>>>> A/bobcats
 	}
 
 }
