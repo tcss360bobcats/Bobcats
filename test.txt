@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-Some text to test the merging process
-=======
-Yeet Yeet
->>>>>>> bobcats
