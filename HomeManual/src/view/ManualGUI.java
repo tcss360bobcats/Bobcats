@@ -85,7 +85,8 @@ public class ManualGUI extends JFrame {
 			public void actionPerformed(final ActionEvent theE) {
 				try {
 					String about = "Version: " + About.getVersion();
-					about += "\nAuthors: " + Arrays.toString(About.getAuthors());
+					about += "\nAuthors: " + Arrays.toString(About.getAuthors()).substring(1,
+							Arrays.toString(About.getAuthors()).length() - 1);
 					
 					JOptionPane.showMessageDialog(ManualGUI.this, about);
 				} catch (HeadlessException | IOException e) {
