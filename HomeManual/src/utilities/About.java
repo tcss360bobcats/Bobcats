@@ -49,4 +49,8 @@ public class About {
 		return authors;
 	}
 	
+	public static void test() {
+		System.out.println("hello world");
+	}
+	
 }
