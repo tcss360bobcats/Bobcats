@@ -89,7 +89,7 @@ public class ManualGUI extends JFrame {
 					
 					JOptionPane.showMessageDialog(ManualGUI.this, about);
 				} catch (HeadlessException | IOException e) {
-					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(ManualGUI.this, "Cannot find version file.");
 					e.printStackTrace();
 				}
 			}
