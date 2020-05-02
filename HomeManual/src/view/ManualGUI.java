@@ -1,23 +1,22 @@
-/*
- * 
- */
-
-
-package view;
+package iteration0;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.*;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-/**
- * ManualGUI is the GUI for the HomeManual app.
- * 
- * @author tikes
- * @version 1 May 2020
- */
 public class ManualGUI extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
 	       EventQueue.invokeLater(new Runnable() {
@@ -38,7 +37,7 @@ public class ManualGUI extends JFrame {
 	
 	private void start() {
 		setVisible(true);
-		setSize(400, 400);
+		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		createMenuBar();
@@ -83,6 +82,11 @@ public class ManualGUI extends JFrame {
 	
 	private JPanel displayPanel() {
 		JPanel display = new JPanel();
+		JTextField test = new JTextField("Search...", 25);	
+		Font bigFont = test.getFont().deriveFont(Font.PLAIN, 25f);
+		test.setFont(bigFont);
+		test.setToolTipText("Please enter something here");
+		display.add(test);
 		
 		return display;
 	}
