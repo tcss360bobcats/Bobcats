@@ -65,11 +65,16 @@ public class About {
 		return authors;
 	}
 	
+
 	/**
 	 * testing github 
 	 */
 	public void test2() {
 		System.out.println("test");
+  }
+	public static void test() {
+		System.out.println("hello world");
+
 	}
 	
 }
