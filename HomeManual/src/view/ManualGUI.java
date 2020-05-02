@@ -18,7 +18,11 @@ import javax.swing.*;
  * @version 1 May 2020
  */
 public class ManualGUI extends JFrame {
-
+	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 	       EventQueue.invokeLater(new Runnable() {
 	            @Override
