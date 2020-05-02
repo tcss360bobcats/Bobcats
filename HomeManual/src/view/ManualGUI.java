@@ -7,9 +7,14 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.Arrays;
 
 import javax.swing.*;
+
+import utilities.About;
 
 /**
  * ManualGUI is the GUI for the HomeManual app.
@@ -78,8 +83,15 @@ public class ManualGUI extends JFrame {
 		about.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent theE) {
-				// TODO: add version popup
-				JOptionPane.showMessageDialog(ManualGUI.this, "Version 1");
+				try {
+					String about = "Version: " + About.getVersion();
+					about += "\nAuthors: " + Arrays.toString(About.getAuthors());
+					
+					JOptionPane.showMessageDialog(ManualGUI.this, about);
+				} catch (HeadlessException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		return help;

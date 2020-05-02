@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class About {
 
-	private String[] authors = {"Darryl James", "Andrew Lim", "Tyke Sykes", "Anthony Nguyen"};
+	private static String[] authors = {"Darryl James", "Andrew Lim", "Tyke Sykes", "Anthony Nguyen"};
 	
 	
 	/**
@@ -38,14 +38,14 @@ public class About {
 		writer.close();
 	}
 	
-	public String getVersion() throws IOException {
+	public static String getVersion() throws IOException {
 		Scanner file = new Scanner(new File("files/version.txt"));
 		String version = file.nextLine();
 		file.close();
 		return version;
 	}
 	
-	public String[] getAuthors() {
+	public static String[] getAuthors() {
 		return authors;
 	}
 	
