@@ -75,6 +75,7 @@ public class ManualGUI extends JFrame {
 			@Override
 			public void actionPerformed(final ActionEvent theE) {
 				// TODO: add version popup
+				JOptionPane.showMessageDialog(ManualGUI.this, "Version 1");
 			}
 		});
 		return help;
