@@ -34,7 +34,7 @@ public class AboutTest {
 	/**
 	 * This test makes sure the authors are 
 	 * the same when we call About.getAuthors()
-	 * for outpu.
+	 * for output.
 	 * 
 	 * @throws IOException
 	 */
