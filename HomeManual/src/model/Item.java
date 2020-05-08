@@ -1,0 +1,133 @@
+package model;
+
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * An Item object holds a name, a File, and tags. There can be no duplicate tags.
+ * 
+ * @author Tyke Sykes
+ * @version 5/08/2020
+ */
+public class Item {
+	/** The name of the Item. */
+	private String myName;
+
+	/** The File object associated with the Item. */
+	private File myFile;
+
+	/** The Set of tags associated with the Item. */
+	private Set<String> myTags;
+
+	/**
+	 * Constructor for Item object with no tags.
+	 * 
+	 * @param theName is the name of the Item.
+	 * @param theFile is the File to be associated with the Item.
+	 */
+	public Item(String theName, File theFile) {
+		this(theName, theFile, new HashSet<String>());
+	}
+
+	/**
+	 * Constructor for Item object with tags.
+	 * 
+	 * @param theName is the name of the Item.
+	 * @param theFile is the File to be associated with the Item.
+	 * @param theTags is a Set of tags to be associated with the Item.
+	 */
+	public Item(String theName, File theFile, Set<String> theTags) {
+		myName = theName;
+		myFile = theFile;
+		myTags = theTags; 
+	}
+
+	/**
+	 * Sets the name of the Item.
+	 * 
+	 * @param theName is the new name to be set.
+	 */
+	public void setName(String theName) {
+		myName = theName;
+	}
+
+	/**
+	 * Returns the name of the Item.
+	 * 
+	 * @return the name of the Item.
+	 */
+	public String getName() {
+		return myName;
+	}
+
+	/**
+	 * Sets the File to be associated with the Item.
+	 * 
+	 * @param theFile is the File to be associated with the Item.
+	 */
+	public void setFile(File theFile) {
+		myFile = theFile;
+	}
+
+	/**
+	 * Returns the File associated with the Item.
+	 * 
+	 * @return the File associated with the Item.
+	 */
+	public File getFile() {
+		return myFile;
+	}
+
+	/**
+	 * Adds a single tag to the Item.
+	 * 
+	 * @param theTag is the tag to add to the Item.
+	 */
+	public void addTag(String theTag) {
+		myTags.add(theTag);
+	}
+
+	/**
+	 * Adds multiple tags to the Item.
+	 * 
+	 * @param theTags is the Set of tags to add to the Item.
+	 */
+	public void addTags(Set<String> theTags) {
+		myTags.addAll(theTags);
+	}
+
+	/**
+	 * Removes a single tag from the Item.
+	 * 
+	 * @param theTag is the tag to be removed from the Item.
+	 */
+	public void removeTag(String theTag) {
+		myTags.remove(theTag);
+	}
+
+	/**
+	 * Removes multiple tags from the Item.
+	 * 
+	 * @param theTags is the Set of tags to be removed from the Item.
+	 */
+	public void removeTags(Set<String> theTags) {
+		myTags.removeAll(theTags);
+	}
+
+	/**
+	 * Removes all tags from the Item.
+	 */
+	public void clearTags() {
+		myTags.clear();
+	}
+
+	/**
+	 * Returns the Set of tags associated with the Item.
+	 * 
+	 * @return the Set of tags associated with the Item.
+	 */
+	public Set<String> getTags() {
+		return myTags;
+	}
+}
