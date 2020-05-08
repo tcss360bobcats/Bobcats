@@ -6,6 +6,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
 import java.awt.event.*;
@@ -24,29 +25,39 @@ import utilities.About;
  */
 public class ManualGUI extends JFrame {
 	
-	/**
-	 * Runs the app.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-	       EventQueue.invokeLater(new Runnable() {
-	            @Override
-	            public void run() {
-	                final ManualGUI frame = new ManualGUI();
-	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	                frame.setVisible(true);
-	                frame.start();
-	            }
-	        });
-	}
+	private final static String TITLE = "Homeowner's Manual";
+	
 
 	/**
 	 * The GUI JFrame.
 	 */
 	ManualGUI() {
-		super();
+		super(TITLE);
 		
+		createMenuBar();
+		initGUI();
+		setVisible(true);
 	}
+	
+	private void initGUI() {
+		
+		//main display for the manual
+		final JPanel mainDisplay = new JPanel();
+		
+		//left file display system
+		final Container westPanel = new JPanel();
+		//westPanel.add(fileSystem);
+		
+		final Container masterPanel = new JPanel(new BorderLayout());
+		masterPanel.add(mainDisplay, BorderLayout.CENTER);
+		//masterPanel.add(westPanel, BorderLayout.WEST);
+		
+		
+		add(masterPanel);
+		pack();
+   	 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
 	
 	/**
 	 * Starts the JFrame.
