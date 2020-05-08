@@ -1,20 +1,15 @@
-/*
- * 
- */
-
-
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.HeadlessException;
-import java.awt.event.*;
-import java.io.IOException;
-import java.util.Arrays;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 
-import utilities.About;
+import components.FilePanel;
+import components.MenuBar;
+import components.SearchPanel;
 
 /**
  * ManualGUI is the GUI for the HomeManual app.
@@ -24,110 +19,64 @@ import utilities.About;
  */
 public class ManualGUI extends JFrame {
 	
-	/**
-	 * Runs the app.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-	       EventQueue.invokeLater(new Runnable() {
-	            @Override
-	            public void run() {
-	                final ManualGUI frame = new ManualGUI();
-	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	                frame.setVisible(true);
-	                frame.start();
-	            }
-	        });
-	}
+    /**default serial id */
+	private static final long serialVersionUID = 1L;
+
+	// constants to capture screen dimensions
+    /** A ToolKit. */
+    private static final Toolkit KIT = Toolkit.getDefaultToolkit();
+    
+    /** The Dimension of the screen. */
+    private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
+    
+    
+	private final static String TITLE = "Homeowner's Manual";
+	
 
 	/**
 	 * The GUI JFrame.
 	 */
 	ManualGUI() {
-		super();
+		super(TITLE);
 		
+		setJMenuBar(new MenuBar(this));
+		initGUI();
 	}
 	
 	/**
-	 * Starts the JFrame.
+	 * Initializes the GUI with all its components and panels. 
 	 */
-	private void start() {
-		setVisible(true);
-		setSize(400, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private void initGUI() {
+		
 		setLayout(new BorderLayout());
-		createMenuBar();
-		add(displayPanel(), BorderLayout.CENTER);
-	}
-	
-	/**
-	 * The menu bar for the app that contains 3 menus:
-	 * File, Edit, and Help.
-	 */
-	private void createMenuBar() {
-		final JMenuBar menuBar = new JMenuBar();
+		//main display for the manual
+		final Container mainDisplay = new JPanel();
 		
-		menuBar.add(createFile());
-		menuBar.add(createEdit());
-		menuBar.add(createHelp());
 		
-		setJMenuBar(menuBar);
-	}
-	
-	/**
-	 * Creates the File menu.
-	 * @return File menu.
-	 */
-	private JMenu createFile() {
-		final JMenu file = new JMenu("File");
-		// TODO: add file toolbar options
-		return file;
-	}
-	
-	/**
-	 * Creates the Edit menu.
-	 * @return the Edit menu.
-	 */
-	private JMenu createEdit() {
-		final JMenu edit = new JMenu("Edit");
-		// TODO: add edit toolbar options
-		return edit;
-	}
-	
-	/**
-	 * Creates the Help menu. Contains the About menu item
-	 * that displays the authors and version of the app.
-	 * @return the Help menu.
-	 */
-	private JMenu createHelp() {
-		final JMenu help = new JMenu("Help");
-		final JMenuItem about = new JMenuItem("About...");
-		help.add(about);
-		about.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent theE) {
-				try {
-					String about = "Version: " + About.getVersion();
-					about += "\nAuthors: " + Arrays.toString(About.getAuthors()).substring(1,
-							Arrays.toString(About.getAuthors()).length() - 1);
-					
-					JOptionPane.showMessageDialog(ManualGUI.this, about);
-				} catch (HeadlessException | IOException e) {
-					JOptionPane.showMessageDialog(ManualGUI.this, "Cannot find version file.");
-					e.printStackTrace();
-				}
-			}
-		});
-		return help;
-	}
-	
-	/**
-	 * Creates the display panel of the app.
-	 * @return the display panel.
-	 */
-	private JPanel displayPanel() {
-		JPanel display = new JPanel();
+		final Container searchPanel = new SearchPanel();
+		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 8);
 		
-		return display;
+		//TODO: ADD FILE SYSTEM
+		//left file display system
+		final Container filePanel = new FilePanel();
+		
+		
+		final Container westPanel = new JPanel(new BorderLayout());
+		westPanel.add(searchPanel, BorderLayout.NORTH);
+		westPanel.add(filePanel);
+		
+		
+		final Container masterPanel = new JPanel(new BorderLayout());
+		masterPanel.add(mainDisplay, BorderLayout.CENTER);
+		masterPanel.add(westPanel, BorderLayout.WEST);
+		//masterPanel.add(filePanel, BorderLayout.WEST);
+		
+
+		add(masterPanel);
+		pack();
+   	 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+        setSize(SCREEN_SIZE.width / 2, (int) Math.round(SCREEN_SIZE.height * 0.75));
 	}
+
 }
