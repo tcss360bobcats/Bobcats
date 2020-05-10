@@ -2,7 +2,6 @@ package JUnit;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -21,10 +20,9 @@ public class AboutTest {
 	 * This test makes sure the versions are 
 	 * only updated when About.getVersion is called.
 	 * 
-	 * @throws IOException 
 	 */
 	@Test 
-	public void getVersionTest() throws IOException { 
+	public void getVersionTest() { 
 		// if we need to test it change the date
 		String date = LocalDate.now().toString();
 		About.updateVersion();
@@ -36,10 +34,9 @@ public class AboutTest {
 	 * the same when we call About.getAuthors()
 	 * for output.
 	 * 
-	 * @throws IOException
 	 */
 	@Test 
-	public void getAuthors() throws IOException {
+	public void getAuthors() {
 		String[] authors = {"Darryl James", "Andrew Lim", "Tyke Sykes", "Anthony Nguyen"};
 		assertTrue(Arrays.toString(authors).equals(Arrays.toString(About.getAuthors())));
 	}

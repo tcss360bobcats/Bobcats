@@ -3,7 +3,6 @@ package components;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Arrays;
 
 import javax.swing.JMenu;
@@ -71,12 +70,13 @@ public class MenuBar extends JMenuBar{
 			@Override
 			public void actionPerformed(final ActionEvent theE) {
 				try {
+					About.updateVersion();
 					String about = "Version: " + About.getVersion();
 					about += "\nAuthors: " + Arrays.toString(About.getAuthors()).substring(1,
 							Arrays.toString(About.getAuthors()).length() - 1);
 					
 					JOptionPane.showMessageDialog(myGUI, about);
-				} catch (HeadlessException | IOException e) {
+				} catch (HeadlessException e) {
 					JOptionPane.showMessageDialog(myGUI, "Cannot find version file.");
 					e.printStackTrace();
 				}

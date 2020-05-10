@@ -2,7 +2,6 @@ package utilities;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
@@ -19,39 +18,50 @@ import java.util.Scanner;
 public class About {
 
 	/**	 Authors of the project	 */
-	private static String[] authors = {"Darryl James", "Andrew Lim", "Tyke Sykes", "Anthony Nguyen"};
-	
+	private static String[] authors = {"Darryl James", "Andrew Lim",
+									   "Tyke Sykes", "Anthony Nguyen"};
 	
 	/**
 	 * Run this to update the current version of the project. 
 	 * @param args Command Line Arguments (not utilized) 
-	 * @throws FileNotFoundException
-	 * @throws UnsupportedEncodingException
 	 */
-	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+	public static void main(String[] args) {
 		updateVersion();
 	}
 	
 	/**
 	 * Updates the version file to contain the current date. 
-	 * @throws FileNotFoundException
-	 * @throws UnsupportedEncodingException
 	 */
-	public static void updateVersion() throws FileNotFoundException, UnsupportedEncodingException {
+	public static void updateVersion() {
 		String updateDate = LocalDate.now().toString();
-		PrintWriter writer = new PrintWriter("files/version.txt", "UTF-8");
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter("files/version.txt", "UTF-8");
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		writer.println(updateDate);
-		System.out.println(updateDate);
 		writer.close();
+		System.out.println(updateDate);
 	}
 	
 	/**
 	 * Reads the version file and returns the last date the project was updated. 
 	 * @return current version of project
-	 * @throws IOException
 	 */
-	public static String getVersion() throws IOException {
-		Scanner file = new Scanner(new File("files/version.txt"));
+	public static String getVersion() {
+		Scanner file = null;
+		try {
+			file = new Scanner(new File("files/version.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String version = file.nextLine();
 		file.close();
 		return version;
@@ -64,7 +74,5 @@ public class About {
 	public static String[] getAuthors() {
 		return authors;
 	}
-	
-
-	
+		
 }

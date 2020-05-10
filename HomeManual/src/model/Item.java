@@ -85,7 +85,7 @@ public class Item {
 	 * @param theTag is the tag to add to the Item.
 	 */
 	public void addTag(String theTag) {
-		myTags.add(theTag);
+		myTags.add(theTag.toLowerCase());
 	}
 
 	/**
@@ -94,7 +94,10 @@ public class Item {
 	 * @param theTags is the Set of tags to add to the Item.
 	 */
 	public void addTags(Set<String> theTags) {
-		myTags.addAll(theTags);
+		
+		for (String tag : theTags) myTags.add(tag.toLowerCase());
+		
+//		myTags.addAll(theTags);
 	}
 
 	/**
