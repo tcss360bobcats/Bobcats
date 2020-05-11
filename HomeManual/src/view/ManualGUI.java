@@ -17,6 +17,7 @@ import javax.swing.*;
 import components.FilePanel;
 import components.MenuBar;
 import components.SearchPanel;
+import components.DisplayPanel;
 import model.Item;
 
 /**
@@ -92,7 +93,7 @@ public class ManualGUI extends JFrame {
 		
 		setLayout(new BorderLayout());
 		//main display for the manual
-		final Container mainDisplay = new JPanel();
+		final Container displayPanel = new DisplayPanel();
 		
 		final Container searchPanel = new SearchPanel();
 		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 8);
@@ -102,7 +103,6 @@ public class ManualGUI extends JFrame {
 		//TODO: ADD FILE SYSTEM
 		//left file display system
 		final Container filePanel = new FilePanel();
-				
 		final Container westPanel = new JPanel(new BorderLayout());
 		westPanel.add(search, BorderLayout.NORTH);
 
@@ -132,7 +132,7 @@ public class ManualGUI extends JFrame {
 							
 						}
 					}
-					if (count == 0) JOptionPane.showMessageDialog(mainDisplay, "No Matches Found");
+					if (count == 0) JOptionPane.showMessageDialog(displayPanel, "No Matches Found");
 					revalidate();
 					repaint();	
 					System.out.println("Pressed: " + search.getText());
@@ -143,7 +143,7 @@ public class ManualGUI extends JFrame {
 		System.out.println(2 ^ 3 ^ 1);
 		
 		final Container masterPanel = new JPanel(new BorderLayout());
-		masterPanel.add(mainDisplay, BorderLayout.CENTER);
+		masterPanel.add(displayPanel, BorderLayout.CENTER);
 		masterPanel.add(westPanel, BorderLayout.WEST);
 		//masterPanel.add(filePanel, BorderLayout.WEST);
 
