@@ -7,7 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/Users/andrewlim/Desktop/asdf/icepdf-viewer-Example/lib/icepdf-core.jar"/>
-	<classpathentry kind="lib" path="/Users/andrewlim/Desktop/asdf/icepdf-viewer-Example/lib/icepdf-viewer.jar"/>
+	<classpathentry kind="lib" path="lib/icepdf-core.jar"/>
+	<classpathentry kind="lib" path="lib/icepdf-viewer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
