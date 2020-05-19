@@ -1,13 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -53,31 +48,58 @@ public class ManualGUI extends JFrame {
 	}
 	
 	/**
-	 * This is a test method for the search functionality
+	 * This is a test method for the 
+	 * search and display functionality
 	 * 
 	 * @return A List of test items to search for
 	 */
 	private ArrayList<Item> getItems() {
-		Item item1 = new Item("AItem", new File("files/testItemFile,txt"));
-		Item item2 = new Item("BItem", new File("files/testItemFile.txt"));
-		Item item3 = new Item("CItem", new File("files/testItemFile.txt"));
-		Item item4 = new Item("DItem", new File("files/testItemFile.txt"));
-		
-		item1.addTag("A");
-		item2.addTag("B");
+		Item item1 = new Item("AItem", new File("files/BioniclesManual.pdf"));
+		Item item2 = new Item("BItem", new File("files/Bobcats-Deliverable1.pdf"));
+		Item item3 = new Item("CItem", new File("files/c4611_sample_explain.pdf"));
+		Item item4 = new Item("DItem", new File("files/checkin-3.pdf"));
+		Item item5 = new Item("Keyword", new File("files/c4611_sample_explain.pdf"));
+		Item item6 = new Item("Bionicle", new File("files/BioniclesManual.pdf"));
+		Item item7 = new Item("Deliverable", new File("files/Bobcats-Deliverable1.pdf"));
+		Item item8 = new Item("CheckIn", new File("files/checkin-3.pdf"));
 		
 		HashSet<String> test = new HashSet<String>();
 		test.add("A");
 		test.add("B");
-		item3.addTags(test);
 		
+		item1.addTag("A");
+		item2.addTag("B");
+		item3.addTags(test);
 		item4.addTag("Boba");
+		
+		test.add("Boba");
+		test.add("Deliverable");
+		test.add("Bionicle");
+		
+		item5.addTag("Keyword");
+		item6.addTag("Bionicle");
+		item7.addTag("Deliverable");
+		item8.addTags(test);
 		
 		ArrayList<Item> allItems = new ArrayList<Item>();
 		allItems.add(item1);
 		allItems.add(item2);
 		allItems.add(item3);
 		allItems.add(item4);
+		allItems.add(item5);
+		allItems.add(item6);
+		allItems.add(item7);
+		allItems.add(item8);
+		allItems.add(item1);
+		allItems.add(item2);
+		allItems.add(item3);
+		allItems.add(item4);
+		allItems.add(item5);
+		allItems.add(item6);
+		allItems.add(item7);
+		allItems.add(item8);
+		
+		for (Item item : allItems) item.addTag("Searching");
 		
 		return allItems;	
 	}
@@ -87,71 +109,53 @@ public class ManualGUI extends JFrame {
 	 */
 	private void initGUI() {
 		
-		// Test Stuff
+		// Test Item Stuff
 		ArrayList<Item> allItems = getItems();
-		// Test Stuff 
+		// Test Item Stuff 
 		
 		setLayout(new BorderLayout());
+		
 		//main display for the manual
-		final Container displayPanel = new DisplayPanel();
-		
-		final Container searchPanel = new SearchPanel();
+		final DisplayPanel displayPanel = new DisplayPanel();
+
+		final FilePanel filePanel = new FilePanel();
+		filePanel.setLayout(new BoxLayout(filePanel, WIDTH));
+
+
+		// Makes the Scroll Bar appear and resizes its width
+		final JScrollPane scrollPane = new JScrollPane(filePanel);	
+        final JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
+        scrollBar.setPreferredSize(new Dimension(12, 12));
+
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+        scrollPane.setVerticalScrollBar(scrollBar);
+		// Makes the Scroll Bar appear and resizes its width
+
+        
+		final SearchPanel searchPanel = new SearchPanel(filePanel, displayPanel);
 		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 8);
-		
-		final JTextField search = new JTextField(20);
-						
+		searchPanel.attachList(allItems);
+					
 		//TODO: ADD FILE SYSTEM
 		//left file display system
-		final Container filePanel = new FilePanel();
-		final Container westPanel = new JPanel(new BorderLayout());
-		westPanel.add(search, BorderLayout.NORTH);
+		final JPanel westPanel = new JPanel(new BorderLayout());
+		westPanel.add(searchPanel, BorderLayout.NORTH);
 
-		//		westPanel.add(searchPanel, BorderLayout.NORTH);
-		westPanel.add(filePanel);
+		//filePanel.setBackground(Color.BLACK);
 		
-		// Add Found items to a list first before adding them to the panel
-		// Make sure to go through all tags first
-		search.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent evt) {
-				if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-					int count = 0;
-					String tag = search.getText();
-					filePanel.removeAll();
-					for (final Item anItem : allItems) {
-						if (anItem.getName().toLowerCase().contains(tag.toLowerCase())) {
-							filePanel.add(new JButton(anItem.getName()), BorderLayout.WEST);
-							count++;
-						} else if (anItem.getTags().size() > 0) {
-							for (String word : anItem.getTags()) {
-								if (word.contains(tag.toLowerCase())) {
-									filePanel.add(new JButton(anItem.getName()), BorderLayout.WEST);
-									count++;
-									break;
-								}
-							}
-							
-						}
-					}
-					if (count == 0) JOptionPane.showMessageDialog(displayPanel, "No Matches Found");
-					revalidate();
-					repaint();	
-					System.out.println("Pressed: " + search.getText());
-				}
-			}
-		});
-		
-		System.out.println(2 ^ 3 ^ 1);
-		
-		final Container masterPanel = new JPanel(new BorderLayout());
+		westPanel.add(scrollPane);
+//		westPanel.add(filePanel);
+				
+		final JPanel masterPanel = new JPanel(new BorderLayout());
 		masterPanel.add(displayPanel, BorderLayout.CENTER);
 		masterPanel.add(westPanel, BorderLayout.WEST);
-		//masterPanel.add(filePanel, BorderLayout.WEST);
 
 		add(masterPanel);
 		pack();
    	 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
-        setSize(SCREEN_SIZE.width / 2, (int) Math.round(SCREEN_SIZE.height * 0.75));
+        setSize((int) (SCREEN_SIZE.width / 2), (int) Math.round(SCREEN_SIZE.height * 0.75));
+   	 	setVisible(true);
 	}
 	
 

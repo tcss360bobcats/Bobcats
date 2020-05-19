@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A Room object contains a List of Items and has a name. There can be duplicate Items in a Room.
@@ -31,6 +30,7 @@ public class Room {
 	 * @param theName is the name of the Room.
 	 * @param theItems is the List of Items in the Room.
 	 */
+	@SuppressWarnings("unchecked")
 	public Room(String theName, ArrayList<Item> theItems) {
 		myName = theName;
 		myItems = (ArrayList<Item>) theItems.clone();
@@ -68,7 +68,7 @@ public class Room {
 	 * 
 	 * @param theItems is the list of Items to be added to the Room.
 	 */
-	public void addItems(List<Item> theItems) {
+	public void addItems(ArrayList<Item> theItems) {
 		myItems.addAll(theItems);
 	}
 	
@@ -102,7 +102,7 @@ public class Room {
 	 * 
 	 * @return the List of Items in the Room.
 	 */
-	public List<Item> getItems() {
+	public ArrayList<Item> getItems() {
 		return myItems;
 	}
 }
