@@ -44,6 +44,11 @@ public class SettingWindow extends JFrame {
 		return master;
 	}
 	
+	/**
+	 * Creates a section to update name settings
+	 * @author Anthony
+	 * @return Panel with name settings
+	 */
 	public JPanel nameSettings() {	
 		
 		JPanel namePanel = new JPanel();
@@ -57,6 +62,11 @@ public class SettingWindow extends JFrame {
 		return namePanel;
 	}
 	
+	/**
+	 * Creates a section to update email settings
+	 * @author Anthony
+	 * @return Panel with email settings
+	 */
 	public JPanel emailSettings() {
 		JPanel emailPanel = new JPanel();
 		JLabel emailLabel = new JLabel("Email: ");
@@ -69,6 +79,11 @@ public class SettingWindow extends JFrame {
 		return emailPanel;
 	}
 	
+	/**
+	 * Creates a section to update file path settings
+	 * @author Anthony
+	 * @return Panel with file path settings
+	 */
 	public JPanel fileSettings() {
 		JPanel filePanel = new JPanel();
 		JButton fileButton = new JButton("DEFAULT FILE PATH");
