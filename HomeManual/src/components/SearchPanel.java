@@ -44,6 +44,7 @@ public class SearchPanel extends JPanel{
 	
 	/**
 	 * Panel with a text field and button to submit entry.
+	 * @author Anthony
 	 */
 	public SearchPanel(FilePanel theFilePanel, DisplayPanel theDisplayPanel) {
 		myFilePanel = theFilePanel;
@@ -58,6 +59,7 @@ public class SearchPanel extends JPanel{
 	
 	/**
 	 * Creates a text field for the user to search up tags/keywords. 
+	 * @author Anthony 
 	 * @return search bar 
 	 */
 	private JTextField createSearchBox() {
@@ -67,6 +69,7 @@ public class SearchPanel extends JPanel{
 	
 	/**
 	 * Creates a button that lets the user submit their text entry.
+	 * @author Anthony
 	 * @return submission button
 	 */
 	private JButton createSearchButton() {

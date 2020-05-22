@@ -25,7 +25,7 @@ public class DisplayPanel extends JPanel {
 	
     public DisplayPanel() {
     	// This Line is for Testing and Demo Purposes
-    	this.filePath = "files/c4611_sample_explain.pdf";
+    	this.filePath = "pdf/c4611_sample_explain.pdf";
     	// This Line is for Testing and Demo Purposes
     	
         myViewerComponentPanel = myFactory.buildViewerPanel();
