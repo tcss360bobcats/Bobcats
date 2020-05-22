@@ -54,14 +54,14 @@ public class ManualGUI extends JFrame {
 	 * @return A List of test items to search for
 	 */
 	private ArrayList<Item> getItems() {
-		Item item1 = new Item("AItem", new File("files/BioniclesManual.pdf"));
-		Item item2 = new Item("BItem", new File("files/Bobcats-Deliverable1.pdf"));
-		Item item3 = new Item("CItem", new File("files/c4611_sample_explain.pdf"));
-		Item item4 = new Item("DItem", new File("files/checkin-3.pdf"));
-		Item item5 = new Item("Keyword", new File("files/c4611_sample_explain.pdf"));
-		Item item6 = new Item("Bionicle", new File("files/BioniclesManual.pdf"));
-		Item item7 = new Item("Deliverable", new File("files/Bobcats-Deliverable1.pdf"));
-		Item item8 = new Item("CheckIn", new File("files/checkin-3.pdf"));
+		Item item1 = new Item("AItem", new File("pdf/BioniclesManual.pdf"));
+		Item item2 = new Item("BItem", new File("pdf/Bobcats-Deliverable1.pdf"));
+		Item item3 = new Item("CItem", new File("pdf/c4611_sample_explain.pdf"));
+		Item item4 = new Item("DItem", new File("pdf/checkin-3.pdf"));
+		Item item5 = new Item("Keyword", new File("pdf/c4611_sample_explain.pdf"));
+		Item item6 = new Item("Bionicle", new File("pdf/BioniclesManual.pdf"));
+		Item item7 = new Item("Deliverable", new File("pdf/Bobcats-Deliverable1.pdf"));
+		Item item8 = new Item("CheckIn", new File("pdf/checkin-3.pdf"));
 		
 		HashSet<String> test = new HashSet<String>();
 		test.add("A");
@@ -106,6 +106,7 @@ public class ManualGUI extends JFrame {
 	
 	/**
 	 * Initializes the GUI with all its components and panels. 
+	 * @author Anthony
 	 */
 	private void initGUI() {
 		
