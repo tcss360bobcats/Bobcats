@@ -8,7 +8,11 @@ import javax.swing.JPanel;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
 
-
+/**
+ * 
+ * @author Andrew Lim, Darryl James
+ *
+ */
 public class DisplayPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
