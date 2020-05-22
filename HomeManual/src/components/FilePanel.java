@@ -19,6 +19,7 @@ public class FilePanel extends JPanel{
 
 	/**
 	 * Contains the file system. 
+	 * @author Anthony
 	 */
 	public FilePanel() {
 		//add(fileSystem);

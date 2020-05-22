@@ -27,7 +27,8 @@ public class MenuBar extends JMenuBar{
 	private ManualGUI myGUI; 
 	
 	/**
-	 * Creates a menu bar for the GUI. 
+	 * Creates a menu bar for the GUI.
+	 * @author Anthony
 	 * @param theGUI the main display 
 	 */
 	public MenuBar(final ManualGUI theGUI) {
@@ -39,16 +40,19 @@ public class MenuBar extends JMenuBar{
 	
 	/**
 	 * Creates the File menu.
+	 * @author Anthony
 	 * @return File menu.
 	 */
 	private JMenu createFile() {
 		final JMenu file = new JMenu("File");
 		// TODO: add file toolbar options
+		final JMenuItem settings = new JMenuItem("Settings");
 		return file;
 	}
 	
 	/**
 	 * Creates the Edit menu.
+	 * @author Anthony
 	 * @return the Edit menu.
 	 */
 	private JMenu createEdit() {
@@ -60,6 +64,7 @@ public class MenuBar extends JMenuBar{
 	/**
 	 * Creates the Help menu. Contains the About menu item
 	 * that displays the authors and version of the app.
+	 * @author Tyke
 	 * @return the Help menu.
 	 */
 	private JMenu createHelp() {
