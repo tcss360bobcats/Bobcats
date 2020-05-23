@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -14,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import model.Item;
 
@@ -140,26 +143,30 @@ public class SearchPanel extends JPanel{
 	 * @return how many items were found.
 	 */
 	private int searchItems(String theTag, ArrayList<Item> theItems) {
-		int count = 0;
-		
-		if (theTag.equals("")) return count;
+		if (theTag.equals("")) return 0;
+		ArrayList<Item> temp = new ArrayList<Item>();
 		
 		for (final Item anItem : theItems) {
+			// If the name of an Item matches the search tag, add it
 			if (anItem.getName().toLowerCase().contains(theTag.toLowerCase())) {
-				addToFilePanel(anItem);
-				count++;
-			} else if (anItem.getTags().size() > 0) {
-				for (String word : anItem.getTags()) {
-					if (word.contains(theTag.toLowerCase())) {
-						addToFilePanel(anItem);
-						count++;
+				temp.add(anItem);
+				
+			// If a tag in the Item matches the search tag, add it
+			} else if (anItem.getTags().size() > 0) {				
+				for (String tag : anItem.getTags()) {
+					if (tag.contains(theTag.toLowerCase())) {
+						temp.add(anItem);
 						break;
 					}
 				}
 			}
 		}
 		
-		return count;
+		// Sorts the list of found items in alphabetical order
+		Collections.sort(temp, (Item a, Item b) -> a.getName().compareTo(b.getName()));
+		// Add all found items to the search panel
+		for (Item anItem : temp) addToFilePanel(anItem);
+		return temp.size();
 	}
 	
 	/**
@@ -175,12 +182,23 @@ public class SearchPanel extends JPanel{
 	private void addToFilePanel(Item theItem) {
 		final JButton butt = new JButton(theItem.getName());
 		butt.setMaximumSize(new Dimension(myFilePanel.getWidth(), 50));
-		
+		butt.setBackground(Color.WHITE);
+		butt.setForeground(Color.BLACK);
 		
 		butt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myDisplayPanel.setDisplay(theItem.getFile().getAbsolutePath());
+			}
+		});
+		
+		butt.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				if (butt.getModel().isRollover()) 
+					butt.setBackground(Color.LIGHT_GRAY);
+				else 
+					butt.setBackground(Color.WHITE);
 			}
 		});
 		

@@ -34,8 +34,8 @@ public class RoomTest {
 		myRoom = new Room("TestRoom");
 		myItems = new ArrayList<Item>();
 		
-		myTestItem1 = new Item("AItem", new File("files/BioniclesManual.pdf"));
-		myTestItem2 = new Item("BItem", new File("files/Bobcats-Deliverable1.pdf"));
+		myTestItem1 = new Item("AItem", new File("pdf/BioniclesManual.pdf"));
+		myTestItem2 = new Item("BItem", new File("pdf/Bobcats-Deliverable1.pdf"));
 		
 		myItems.add(myTestItem1);
 		myRoom.addItem(myTestItem1);

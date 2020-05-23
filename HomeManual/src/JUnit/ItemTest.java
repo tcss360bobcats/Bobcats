@@ -23,9 +23,9 @@ public class ItemTest {
 	
 	@Before
 	public void start() {
-		myItem1 = new Item("AItem", new File("files/BioniclesManual.pdf"));
-		myItem2 = new Item("BItem", new File("files/Bobcats-Deliverable1.pdf"));
-		myItem3 = new Item("DItem", new File("files/checkin-3.pdf"));
+		myItem1 = new Item("AItem", new File("pdf/BioniclesManual.pdf"));
+		myItem2 = new Item("BItem", new File("pdf/Bobcats-Deliverable1.pdf"));
+		myItem3 = new Item("DItem", new File("pdf/checkin-3.pdf"));
 		
 		myItem1.addTag("a");
 		myItem2.addTag("b");
@@ -200,9 +200,9 @@ public class ItemTest {
 	 */
 	@Test
 	public void itemFileNameTest() {
-		assertEquals(myItem1.getFile().getPath(), "files\\BioniclesManual.pdf");
-		assertEquals(myItem2.getFile().getPath(), "files\\Bobcats-Deliverable1.pdf");
-		assertEquals(myItem3.getFile().getPath(), "files\\checkin-3.pdf");
+		assertEquals(myItem1.getFile().getPath(), "pdf\\BioniclesManual.pdf");
+		assertEquals(myItem2.getFile().getPath(), "pdf\\Bobcats-Deliverable1.pdf");
+		assertEquals(myItem3.getFile().getPath(), "pdf\\checkin-3.pdf");
 	}
 	
 	/**
@@ -218,8 +218,8 @@ public class ItemTest {
 	@Test
 	public void itemFileSetTest() {
 		File temp = myItem3.getFile();
-		myItem3.setFile(new File("files\\\\BioniclesManual.pdf"));
-		assertEquals(myItem3.getFile().getPath(), "files\\BioniclesManual.pdf");
+		myItem3.setFile(new File("pdf\\BioniclesManual.pdf"));
+		assertEquals(myItem3.getFile().getPath(), "pdf\\BioniclesManual.pdf");
 		myItem3.setFile(temp);
 	}
   
