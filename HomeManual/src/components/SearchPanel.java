@@ -4,19 +4,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import model.Item;
 
@@ -93,12 +93,15 @@ public class SearchPanel extends JPanel{
 	 * @param theItems a list of the items that are searchable
 	 */
 	public void attachList(ArrayList<Item> theItems) {
-		mySearchBox.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent evt) {
-				if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-					search(theItems);
-				}
-			}
+		// Search the Items as the user types
+		mySearchBox.getDocument().addDocumentListener(new DocumentListener() {			
+			@Override
+			public void insertUpdate(DocumentEvent e) {search(theItems);}
+			@Override
+			public void changedUpdate(DocumentEvent e) {search(theItems);}
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) {search(theItems);}
 		});
 		
 		mySearchButton.addActionListener(new ActionListener() {
@@ -107,6 +110,13 @@ public class SearchPanel extends JPanel{
 				search(theItems);
 			}
 		});
+		
+		// Old Search method by pressing the enter key
+//		mySearchBox.addKeyListener(new KeyAdapter() {
+//			public void keyPressed(KeyEvent evt) {
+//				if (evt.getKeyCode() == KeyEvent.VK_ENTER) {search(theItems);}
+//			}
+//		});
 	}
 	
 	/**
@@ -122,10 +132,9 @@ public class SearchPanel extends JPanel{
 		final String tag = mySearchBox.getText();
 		final int count = searchItems(tag, theItems);
 
-		if (count == 0) JOptionPane.showMessageDialog(myDisplayPanel, "No Matches Found");
+		if (count == 0) myFilePanel.add(new JLabel("\tNo Matches Found"));
 		myFilePanel.revalidate();
-		myFilePanel.repaint();	
-//		System.out.println("Pressed: " + mySearchBox.getText());	
+		myFilePanel.repaint();			
 	}
 	
 	/**
