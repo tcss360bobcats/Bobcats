@@ -1,6 +1,10 @@
 package components;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import utilities.Settings;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -10,9 +14,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class SettingWindow extends JFrame {
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2545946456909824902L;
+	Settings mySettings;
+	JTextField nameText;
+	JTextField emailText;
 	
 	public SettingWindow() {
+		mySettings = new Settings("DEFAULT USER", "DEFAULT EMAIL");
 		setSize(300, 250);
 		add(createWindow());
 		setVisible(true);
@@ -32,8 +43,6 @@ public class SettingWindow extends JFrame {
 		JButton exportButton = new JButton("Export Settings");
 		JButton saveButton = new JButton("Update Settings");
 		
-		
-		
 		master.add(nameSettings());
 		master.add(emailSettings());
 		master.add(fileSettings());
@@ -41,6 +50,27 @@ public class SettingWindow extends JFrame {
 		master.add(exportButton);
 		master.add(saveButton);
 		
+		/**
+		 * @author Andrew Lim
+		 */
+		importButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mySettings = new Settings(nameText.getText(), emailText.getText());
+				mySettings.importSettings();
+			}
+		});
+		
+		/**
+		 * @author Andrew Lim
+		 */
+		exportButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mySettings = new Settings(nameText.getText(), emailText.getText());
+				mySettings.exportSettings();
+			}
+		});
 		return master;
 	}
 	
@@ -53,8 +83,8 @@ public class SettingWindow extends JFrame {
 		
 		JPanel namePanel = new JPanel();
 		JLabel nameLabel = new JLabel("Name: ");
-		JTextField nameText = new JTextField();
-		nameText.setText("DEFAULT NAME");
+		nameText = new JTextField();
+		nameText.setText(mySettings.tagName);
 		
 		namePanel.add(nameLabel);
 		namePanel.add(nameText);
@@ -70,12 +100,12 @@ public class SettingWindow extends JFrame {
 	public JPanel emailSettings() {
 		JPanel emailPanel = new JPanel();
 		JLabel emailLabel = new JLabel("Email: ");
-		JTextField emailText = new JTextField();
-		emailText.setText("DEFAULT EMAIL");
-		
+		emailText = new JTextField();
+		emailText.setText(mySettings.email);
 		emailPanel.add(emailLabel);
 		emailPanel.add(emailText);
-
+		
+		
 		return emailPanel;
 	}
 	
