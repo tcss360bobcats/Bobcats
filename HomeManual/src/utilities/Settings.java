@@ -1,6 +1,5 @@
 package utilities;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -51,6 +50,7 @@ public class Settings implements Serializable {
             ObjectOutputStream oout = new ObjectOutputStream(out);
             oout.writeObject(currentSettings);
             oout.close();
+            ois.close();
     	} catch (Exception e) {
     		System.out.println(e);
     	}

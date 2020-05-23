@@ -52,8 +52,6 @@ public class MenuBar extends JMenuBar{
 		
 		
 		
-		
-		
 		return file;
 	}
 	
@@ -65,6 +63,10 @@ public class MenuBar extends JMenuBar{
 	private JMenu createEdit() {
 		final JMenu edit = new JMenu("Edit");
 		// TODO: add edit toolbar options
+		final JMenuItem addItem = new JMenuItem("Add Item");
+		addItem.addActionListener(theEvent -> new AddItemWindow());
+		edit.add(addItem);
+		
 		return edit;
 	}
 	
