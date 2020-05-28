@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Tyke Sykes
  * @version 5/08/2020
  */
-public class Room {
+public class Room implements Serializable {
 	/** The name of the Room. */
 	private String myName;
 	

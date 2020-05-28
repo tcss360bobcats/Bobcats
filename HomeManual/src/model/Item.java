@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ import java.util.Set;
  * @author Tyke Sykes
  * @version 5/08/2020
  */
-public class Item {
+public class Item implements Serializable {
 	/** The name of the Item. */
 	private String myName;
 
