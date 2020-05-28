@@ -8,7 +8,11 @@ import javax.swing.JPanel;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
 
-
+/**
+ * 
+ * @author Andrew Lim, Darryl James
+ *
+ */
 public class DisplayPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -21,7 +25,7 @@ public class DisplayPanel extends JPanel {
 	
     public DisplayPanel() {
     	// This Line is for Testing and Demo Purposes
-    	this.filePath = "files/c4611_sample_explain.pdf";
+    	this.filePath = "pdf/c4611_sample_explain.pdf";
     	// This Line is for Testing and Demo Purposes
     	
         myViewerComponentPanel = myFactory.buildViewerPanel();
