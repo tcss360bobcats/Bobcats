@@ -3,9 +3,12 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import javax.swing.*;
 
@@ -48,64 +51,45 @@ public class ManualGUI extends JFrame {
 	}
 	
 	/**
-	 * This is a test method for the 
-	 * search and display functionality
+	 * Reads all the Items from the input file
+	 * so they can be displayed on 
+	 * the application.
 	 * 
+	 * @author Darryl James
 	 * @return A List of test items to search for
 	 */
 	private ArrayList<Item> getItems() {
-		Item item1 = new Item("AItem", new File("files/BioniclesManual.pdf"));
-		Item item2 = new Item("BItem", new File("files/Bobcats-Deliverable1.pdf"));
-		Item item3 = new Item("CItem", new File("files/c4611_sample_explain.pdf"));
-		Item item4 = new Item("DItem", new File("files/checkin-3.pdf"));
-		Item item5 = new Item("Keyword", new File("files/c4611_sample_explain.pdf"));
-		Item item6 = new Item("Bionicle", new File("files/BioniclesManual.pdf"));
-		Item item7 = new Item("Deliverable", new File("files/Bobcats-Deliverable1.pdf"));
-		Item item8 = new Item("CheckIn", new File("files/checkin-3.pdf"));
-		
-		HashSet<String> test = new HashSet<String>();
-		test.add("A");
-		test.add("B");
-		
-		item1.addTag("A");
-		item2.addTag("B");
-		item3.addTags(test);
-		item4.addTag("Boba");
-		
-		test.add("Boba");
-		test.add("Deliverable");
-		test.add("Bionicle");
-		
-		item5.addTag("Keyword");
-		item6.addTag("Bionicle");
-		item7.addTag("Deliverable");
-		item8.addTags(test);
-		
 		ArrayList<Item> allItems = new ArrayList<Item>();
-		allItems.add(item1);
-		allItems.add(item2);
-		allItems.add(item3);
-		allItems.add(item4);
-		allItems.add(item5);
-		allItems.add(item6);
-		allItems.add(item7);
-		allItems.add(item8);
-		allItems.add(item1);
-		allItems.add(item2);
-		allItems.add(item3);
-		allItems.add(item4);
-		allItems.add(item5);
-		allItems.add(item6);
-		allItems.add(item7);
-		allItems.add(item8);
 		
-		for (Item item : allItems) item.addTag("Searching");
+		try(BufferedReader br = new BufferedReader(new FileReader("files/testItemFile.txt"))) {
+			String line = br.readLine();
+			
+			while(line != null) {
+				String[] temp = line.split(", ");
+				String name = temp[0];
+				String file = temp[1];
+				String[] tags = temp[2].split(" ");
+				
+				Item A = new Item(name, new File(file));
+				for (String tag : tags) A.addTag(tag);
+				allItems.add(A);
+				
+				line = br.readLine();
+			}
+			
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 		
 		return allItems;	
 	}
 	
 	/**
 	 * Initializes the GUI with all its components and panels. 
+	 * @author Anthony
 	 */
 	private void initGUI() {
 		
@@ -121,7 +105,6 @@ public class ManualGUI extends JFrame {
 		final FilePanel filePanel = new FilePanel();
 		filePanel.setLayout(new BoxLayout(filePanel, WIDTH));
 
-
 		// Makes the Scroll Bar appear and resizes its width
 		final JScrollPane scrollPane = new JScrollPane(filePanel);	
         final JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
@@ -130,22 +113,15 @@ public class ManualGUI extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.getVerticalScrollBar().setUnitIncrement(10);
         scrollPane.setVerticalScrollBar(scrollBar);
-		// Makes the Scroll Bar appear and resizes its width
-
         
 		final SearchPanel searchPanel = new SearchPanel(filePanel, displayPanel);
 		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 8);
 		searchPanel.attachList(allItems);
 					
-		//TODO: ADD FILE SYSTEM
 		//left file display system
 		final JPanel westPanel = new JPanel(new BorderLayout());
-		westPanel.add(searchPanel, BorderLayout.NORTH);
-
-		//filePanel.setBackground(Color.BLACK);
-		
+		westPanel.add(searchPanel, BorderLayout.NORTH);		
 		westPanel.add(scrollPane);
-//		westPanel.add(filePanel);
 				
 		final JPanel masterPanel = new JPanel(new BorderLayout());
 		masterPanel.add(displayPanel, BorderLayout.CENTER);

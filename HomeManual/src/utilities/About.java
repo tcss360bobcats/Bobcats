@@ -31,6 +31,7 @@ public class About {
 	
 	/**
 	 * Updates the version file to contain the current date. 
+	 * @author Anthony
 	 */
 	public static void updateVersion() {
 		String updateDate = LocalDate.now().toString();
@@ -52,6 +53,7 @@ public class About {
 	
 	/**
 	 * Reads the version file and returns the last date the project was updated. 
+	 * @author Anthony
 	 * @return current version of project
 	 */
 	public static String getVersion() {
@@ -69,6 +71,7 @@ public class About {
 	
 	/**
 	 * Returns the authors of the project. 
+	 * @author Anthony 
 	 * @return authors of project 
 	 */
 	public static String[] getAuthors() {

@@ -10,6 +10,9 @@ import org.junit.Test;
 import utilities.About;
 
 /**
+ * The about test class tests the about 
+ * class to see if the version is updated
+ * or not.
  * 
  * @author Darryl James
  * @version 5/02/2020

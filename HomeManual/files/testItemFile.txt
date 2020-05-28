@@ -1,1 +1,8 @@
-Sample text file for testing purposes
+AItem, pdf/BioniclesManual.pdf, A Searching
+BItem, pdf/Bobcats-Deliverable1.pdf, B Searching
+CItem, pdf/c4611_sample_explain.pdf, A B Searching
+DItem, pdf/checkin-3.pdf, A B Boba Searching
+Keyword, pdf/c4611_sample_explain.pdf, Keyword Searching
+Bionicle, pdf/BioniclesManual.pdf, Bionicle Searching
+Deliverable, pdf/Bobcats-Deliverable1.pdf, Deliverable Searching
+CheckIn, pdf/checkin-3.pdf, A B Boba Deliverable Bionicle
