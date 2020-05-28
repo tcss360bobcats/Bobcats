@@ -27,7 +27,7 @@ public class MenuBar extends JMenuBar{
 	/** main GUI*/
 	private ManualGUI myGUI; 
 	
-	
+	/** The menu that holds the edit options regarding items. */
 	private JMenu myEditMenu; 
 	
 	

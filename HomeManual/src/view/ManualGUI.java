@@ -36,7 +36,7 @@ public class ManualGUI extends JFrame {
     /** The Dimension of the screen. */
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
     
-    
+    /** The Title of the Application. */
 	private final static String TITLE = "Homeowner's Manual";
 	
 
@@ -66,8 +66,13 @@ public class ManualGUI extends JFrame {
 			
 			while(line != null) {
 				String[] temp = line.split(", ");
+				// The name of the item
 				String name = temp[0];
+				
+				// The File location for the item
 				String file = temp[1];
+				
+				// The tags/keywords associated with the item
 				String[] tags = temp[2].split(" ");
 				
 				Item A = new Item(name, new File(file));
@@ -93,13 +98,12 @@ public class ManualGUI extends JFrame {
 	 */
 	private void initGUI() {
 		
-		// Test Item Stuff
-		ArrayList<Item> allItems = getItems();
-		// Test Item Stuff 
+		// Generate the list of items from a file
+		ArrayList<Item> allItems = getItems(); 
 		
 		setLayout(new BorderLayout());
 		
-		//main display for the manual
+		// Main display for the manual
 		final DisplayPanel displayPanel = new DisplayPanel();
 
 		final FilePanel filePanel = new FilePanel();
@@ -110,19 +114,22 @@ public class ManualGUI extends JFrame {
         final JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
         scrollBar.setPreferredSize(new Dimension(12, 12));
 
+        // Style the scroll bar with increments per scroll and when we will see the bar
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.getVerticalScrollBar().setUnitIncrement(10);
         scrollPane.setVerticalScrollBar(scrollBar);
         
+        // The search panel to enter  tags/keywords
 		final SearchPanel searchPanel = new SearchPanel(filePanel, displayPanel);
 		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 8);
 		searchPanel.attachList(allItems);
 					
-		//left file display system
+		// Left file display system
 		final JPanel westPanel = new JPanel(new BorderLayout());
 		westPanel.add(searchPanel, BorderLayout.NORTH);		
 		westPanel.add(scrollPane);
-				
+		
+		// The master panel that holds all the components to display to the user.
 		final JPanel masterPanel = new JPanel(new BorderLayout());
 		masterPanel.add(displayPanel, BorderLayout.CENTER);
 		masterPanel.add(westPanel, BorderLayout.WEST);

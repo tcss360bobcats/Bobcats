@@ -12,6 +12,11 @@ import java.util.Set;
  * @version 5/08/2020
  */
 public class Item implements Serializable {
+	/**
+	 * Default serial Id.
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** The name of the Item. */
 	private String myName;
 
@@ -95,10 +100,7 @@ public class Item implements Serializable {
 	 * @param theTags is the Set of tags to add to the Item.
 	 */
 	public void addTags(Set<String> theTags) {
-		
 		for (String tag : theTags) myTags.add(tag.toLowerCase());
-		
-//		myTags.addAll(theTags);
 	}
 
 	/**
