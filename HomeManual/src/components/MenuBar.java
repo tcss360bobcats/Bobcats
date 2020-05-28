@@ -9,6 +9,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 import utilities.About;
 import view.ManualGUI;
 
@@ -26,6 +28,11 @@ public class MenuBar extends JMenuBar{
 	/** main GUI*/
 	private ManualGUI myGUI; 
 	
+	
+	private JMenu myEditMenu; 
+	
+	
+	
 	/**
 	 * Creates a menu bar for the GUI.
 	 * @author Anthony
@@ -34,8 +41,9 @@ public class MenuBar extends JMenuBar{
 	public MenuBar(final ManualGUI theGUI) {
 		myGUI = theGUI;
 		add(createFile());
-		add(createEdit());
-		add(createHelp());
+		myEditMenu = createEdit();
+		add(myEditMenu);
+		add(createUtility());
 	}
 	
 	/**
@@ -49,9 +57,7 @@ public class MenuBar extends JMenuBar{
 		final JMenuItem settings = new JMenuItem("Settings");
 		settings.addActionListener(theEvent -> new SettingWindow());
 		file.add(settings);
-		
-		
-		
+			
 		return file;
 	}
 	
@@ -62,6 +68,7 @@ public class MenuBar extends JMenuBar{
 	 */
 	private JMenu createEdit() {
 		final JMenu edit = new JMenu("Edit");
+		edit.setEnabled(false);
 		// TODO: add edit toolbar options
 		final JMenuItem addItem = new JMenuItem("Add Item");
 		addItem.addActionListener(theEvent -> new AddItemWindow());
@@ -76,15 +83,14 @@ public class MenuBar extends JMenuBar{
 	 * @author Tyke
 	 * @return the Help menu.
 	 */
-	private JMenu createHelp() {
-		final JMenu help = new JMenu("Help");
+	private JMenu createUtility() {
+		final JMenu utility = new JMenu("Utility");
+		
 		final JMenuItem about = new JMenuItem("About...");
-		help.add(about);
 		about.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent theE) {
 				try {
-					About.updateVersion();
 					String about = "Version: " + About.getVersion();
 					about += "\nAuthors: " + Arrays.toString(About.getAuthors()).substring(1,
 							Arrays.toString(About.getAuthors()).length() - 1);
@@ -96,6 +102,21 @@ public class MenuBar extends JMenuBar{
 				}
 			}
 		});
-		return help;
+		
+		//@author Anthony
+		final JMenuItem login = new JMenuItem("Admin Log In...");
+		login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				//log in stuff		
+				myEditMenu.setEnabled(true);
+			}			
+		});
+		utility.add(login);
+		utility.add(about);
+		
+		return utility;
 	}
 }
