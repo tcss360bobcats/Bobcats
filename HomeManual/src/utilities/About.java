@@ -40,10 +40,8 @@ public class About {
 			writer = new PrintWriter("files/version.txt", "UTF-8");
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		writer.println(updateDate);
@@ -61,7 +59,6 @@ public class About {
 		try {
 			file = new Scanner(new File("files/version.txt"));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String version = file.nextLine();

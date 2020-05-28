@@ -10,6 +10,11 @@ import java.util.ArrayList;
  * @version 5/08/2020
  */
 public class Room implements Serializable {
+	/**
+	 * Default serial Id.
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** The name of the Room. */
 	private String myName;
 	

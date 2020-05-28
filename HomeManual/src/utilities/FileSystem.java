@@ -2,7 +2,6 @@ package utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -26,7 +25,7 @@ public class FileSystem implements Serializable {
 	private static final long serialVersionUID = -8801974321963152918L;
 
 	public static HashSet<Room> initialize() {
-		HashSet rooms = new HashSet<Room>();
+		HashSet<Room> rooms = new HashSet<Room>();
 		
 		ObjectInputStream ois = null;
 		FileInputStream fin = null;

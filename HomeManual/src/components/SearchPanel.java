@@ -110,13 +110,6 @@ public class SearchPanel extends JPanel{
 				search(theItems);
 			}
 		});
-		
-		// Old Search method by pressing the enter key
-//		mySearchBox.addKeyListener(new KeyAdapter() {
-//			public void keyPressed(KeyEvent evt) {
-//				if (evt.getKeyCode() == KeyEvent.VK_ENTER) {search(theItems);}
-//			}
-//		});
 	}
 	
 	/**
