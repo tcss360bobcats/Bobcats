@@ -103,19 +103,21 @@ public class MenuBar extends JMenuBar{
 		});
 		
 		//@author Anthony
+		//Lets the admin login with the password 1234
 		final JMenuItem login = new JMenuItem("Admin Log In...");
 		login.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				//log in stuff		
-				myEditMenu.setEnabled(true);
+				String password = JOptionPane.showInputDialog("Enter Admin Power: ");
+				if(password.equals("1234")) {
+					myEditMenu.setEnabled(true);
+				}
 			}			
 		});
 		utility.add(login);
 		utility.add(about);
-		
 		return utility;
 	}
 }
