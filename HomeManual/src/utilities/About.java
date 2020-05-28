@@ -71,6 +71,7 @@ public class About {
 	
 	/**
 	 * Returns the authors of the project. 
+	 * @author Anthony 
 	 * @return authors of project 
 	 */
 	public static String[] getAuthors() {

@@ -118,7 +118,6 @@ public class ManualGUI extends JFrame {
 		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 8);
 		searchPanel.attachList(allItems);
 					
-		//TODO: ADD FILE SYSTEM
 		//left file display system
 		final JPanel westPanel = new JPanel(new BorderLayout());
 		westPanel.add(searchPanel, BorderLayout.NORTH);		
