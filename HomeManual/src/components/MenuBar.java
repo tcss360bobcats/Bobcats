@@ -80,44 +80,63 @@ public class MenuBar extends JMenuBar{
 	 * Creates the Help menu. Contains the About menu item
 	 * that displays the authors and version of the app.
 	 * @author Tyke
+	 * @author Anthony
 	 * @return the Help menu.
 	 */
 	private JMenu createUtility() {
 		final JMenu utility = new JMenu("Utility");
 		
+		utility.add(createAboutButton());
+		utility.add(createLoginButton());
+		return utility;
+	}
+	
+	private JMenuItem createAboutButton() {
 		final JMenuItem about = new JMenuItem("About...");
 		about.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(final ActionEvent theE) {
+			public void actionPerformed(final ActionEvent theEvent) {
 				try {
 					String about = "Version: " + About.getVersion();
 					about += "\nAuthors: " + Arrays.toString(About.getAuthors()).substring(1,
 							Arrays.toString(About.getAuthors()).length() - 1);
 					
 					JOptionPane.showMessageDialog(myGUI, about);
-				} catch (HeadlessException e) {
+				} catch (HeadlessException theException) {
 					JOptionPane.showMessageDialog(myGUI, "Cannot find version file.");
-					e.printStackTrace();
+					theException.printStackTrace();
 				}
 			}
 		});
-		
-		//@author Anthony
+		return about;
+	}
+	
+	private JMenuItem createLoginButton() {
 		//Lets the admin login with the password 1234
 		final JMenuItem login = new JMenuItem("Admin Log In...");
 		login.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				//log in stuff		
-				String password = JOptionPane.showInputDialog("Enter Admin Power: ");
-				if(password.equals("1234")) {
-					myEditMenu.setEnabled(true);
+			public void actionPerformed(ActionEvent theEvent) {
+				
+				//popup window that takes in user input for the password
+				String password = JOptionPane.showInputDialog("Enter Admin Password: ");
+				try {
+					if(password.equals("1234")) {
+						myEditMenu.setEnabled(true);
+						JOptionPane.showMessageDialog(myGUI, "Logged in successfully!");
+					} else {
+						JOptionPane.showMessageDialog(myGUI, "Incorrect Password.");
+					}
+				//catch error when the user doesn't enter a password 
+				} catch (NullPointerException theException) {
+					password = "no password";
 				}
+
 			}			
 		});
-		utility.add(login);
-		utility.add(about);
-		return utility;
+		return login;	
 	}
+	
+	
 }
