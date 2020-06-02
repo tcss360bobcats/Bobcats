@@ -138,4 +138,9 @@ public class Item implements Serializable {
 	public Set<String> getTags() {
 		return myTags;
 	}
+	
+	@Override
+	public String toString() {
+		return myName;
+	}
 }
