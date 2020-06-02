@@ -50,7 +50,7 @@ public class DisplayPanel extends JPanel {
     /**
      * Sets the display item 
      * on the display panel.
-     * 
+     * @author Andrew Lim
      * @param theFile the new item file to display
      */
     public void setDisplay(String theFile) {
