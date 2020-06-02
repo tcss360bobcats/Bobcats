@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.User;
+
 public class SettingWindow extends JFrame {
 	/**
 	 * 
