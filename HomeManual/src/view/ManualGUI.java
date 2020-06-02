@@ -16,6 +16,7 @@ import components.MenuBar;
 import components.SearchPanel;
 import components.DisplayPanel;
 import model.Item;
+import model.Room;
 
 /**
  * ManualGUI is the GUI for the HomeManual app.
@@ -104,8 +105,12 @@ public class ManualGUI extends JFrame {
 		
 		// Main display for the manual
 		final DisplayPanel displayPanel = new DisplayPanel();
+		
+		Room room = new Room("test", allItems);
+		ArrayList<Room> roomList = new ArrayList<Room>();
+		roomList.add(room);
 
-		final FilePanel filePanel = new FilePanel();
+		final FilePanel filePanel = new FilePanel(roomList);
 		filePanel.setLayout(new BoxLayout(filePanel, WIDTH));
 
 		// Makes the Scroll Bar appear and resizes its width

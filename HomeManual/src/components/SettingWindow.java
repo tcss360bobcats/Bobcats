@@ -18,16 +18,19 @@ import javax.swing.JTextField;
 import model.User;
 import utilities.Settings;
 
+/**
+ * Displays settings options of the application.
+ * @author Anthony, Andrew
+ */
 public class SettingWindow extends JFrame {
 	/**
-	 * 
+	 * A default serial id.
 	 */
 	private static final long serialVersionUID = 2545946456909824902L;
 	private Settings s;
 	private User user;
 	private JLabel usernameText;
 	private JLabel emailText;
-	
 	private JTextField usernameImport;
 	private JTextField usernameExport;
 	private JTextField emailExport;
@@ -104,8 +107,9 @@ public class SettingWindow extends JFrame {
 	}
 	
 	/**
+	 * Creates the import form.
 	 * @author Andrew Lim
-	 * @return
+	 * @return JPanel containing the import form.
 	 */
 	public JPanel importForm() {
 		JPanel panel = new JPanel();
@@ -140,8 +144,9 @@ public class SettingWindow extends JFrame {
 	}
 	
 	/**
+	 * Creates the export form.
 	 * @author Andrew Lim
-	 * @return
+	 * @return JPanel containing the export form.
 	 */
 	public JPanel exportForm() {
 		JPanel panel = new JPanel();
@@ -173,7 +178,7 @@ public class SettingWindow extends JFrame {
 	/**
 	 * Creates a section to update name settings
 	 * @author Anthony
-	 * @return Panel with name settings
+	 * @return JPanel with name settings
 	 */
 	public JPanel usernameSettings() {	
 		JPanel usernamePanel = new JPanel();
@@ -187,7 +192,7 @@ public class SettingWindow extends JFrame {
 	/**
 	 * Creates a section to update email settings
 	 * @author Anthony
-	 * @return Panel with email settings
+	 * @return JPanel with email settings
 	 */
 	public JPanel emailSettings() {
 		JPanel emailPanel = new JPanel();

@@ -111,4 +111,9 @@ public class Room implements Serializable {
 	public ArrayList<Item> getItems() {
 		return myItems;
 	}
+	
+	@Override
+	public String toString() {
+		return myName;
+	}
 }

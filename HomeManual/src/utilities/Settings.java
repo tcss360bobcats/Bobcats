@@ -13,15 +13,21 @@ import model.User;
 /**
  * Settings that stores user information.
  * @author Andrew Lim
- *
  */
 public class Settings {
-	// private User user;
 	
+	/**
+	 * Creates a setting.
+	 */
 	public Settings() {
 		
 	}
 	
+	/**
+	 * Imports a user profile to the application.
+	 * @param username used to import user information
+	 * @throws FileNotFoundException thrown if user does not exist.
+	 */
 	public void importSettings(String username) throws FileNotFoundException {
 		File f = new File("./src/users/" + username + ".ser");
 		// if user does not exist
@@ -44,6 +50,11 @@ public class Settings {
 		}	
 	}
 	
+	/**
+	 * Exports a new user setting.
+	 * @param exportUser user information to be saved.
+	 * @throws FileAlreadyExistsException thrown if user already exists.
+	 */
 	public void exportSettings(User exportUser) throws FileAlreadyExistsException {
 		File f = new File("./src/users/" + exportUser.getUsername() + ".ser");
 		// if user already exists

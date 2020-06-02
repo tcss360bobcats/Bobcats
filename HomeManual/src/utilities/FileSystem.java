@@ -60,7 +60,9 @@ public class FileSystem implements Serializable {
 		} catch (Exception ex) {}
 		finally {
 			if(oos != null) {
-				try {oos.close();} catch(Exception e) {}
+				try {
+					oos.close();
+					} catch(Exception e) {}
 			}
 		}
 		
