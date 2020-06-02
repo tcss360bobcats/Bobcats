@@ -64,9 +64,9 @@ public class FileSystem implements Serializable {
 			}
 		}
 		
-		for(Item i : room.getItems()) {
-			
-		}
+//		for(Item i : room.getItems()) {
+//			
+//		}
 	}
 	
 	public static void delete(Item item) {
