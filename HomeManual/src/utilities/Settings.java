@@ -1,58 +1,98 @@
 package utilities;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.nio.file.FileAlreadyExistsException;
 
-public class Settings implements Serializable {
-    /**
-	 * @author Andrew Lim
+import model.User;
+
+/**
+ * Settings that stores user information.
+ * @author Andrew Lim
+ */
+public class Settings {
+	
+	/**
+	 * Creates a setting.
 	 */
-	private static final long serialVersionUID = 2545946456909824902L;
-	public String tagName;
-    public String email;
-    public Settings(String tagName, String email) {
-        this.tagName = tagName;
-        this.email = email;
-    }
-    
-    /**
-	 * @author Andrew Lim
+	public Settings() {
+		
+	}
+	
+	/**
+	 * Imports a user profile to the application.
+	 * @param username used to import user information
+	 * @throws FileNotFoundException thrown if user does not exist.
 	 */
-    public String toString() {
-        return tagName + " " + email;
-    }
-    
-    /**
-	 * @author Andrew Lim
+	public void importSettings(String username) throws FileNotFoundException {
+		File f = new File("./src/users/" + username + ".ser");
+		// if user does not exist
+		if (!f.exists()) {
+			// throw exception
+			throw new FileNotFoundException();
+		} else {
+			// update files/profile.ser with the new user
+			try {
+	            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+	            User importedUser = (User) ois.readObject();
+	            FileOutputStream out = new FileOutputStream("./src/files/profile.ser");
+	            ObjectOutputStream oout = new ObjectOutputStream(out);
+	            oout.writeObject(importedUser);
+	            oout.close();
+	            ois.close();
+	        } catch (Exception e) {
+	            System.out.println(e);
+	        }
+		}	
+	}
+	
+	/**
+	 * Exports a new user setting.
+	 * @param exportUser user information to be saved.
+	 * @throws FileAlreadyExistsException thrown if user already exists.
 	 */
-    public void exportSettings() {
-    	try {
-            FileOutputStream out = new FileOutputStream("./files/" + this.tagName + ".txt");
-            ObjectOutputStream oout = new ObjectOutputStream(out);
-            oout.writeObject(this);
-            oout.close();
-    	} catch (Exception e) {
-    		System.out.println(e);
-    	}
-    }
-    
-    /**
-	 * @author Andrew Lim
+	public void exportSettings(User exportUser) throws FileAlreadyExistsException {
+		File f = new File("./src/users/" + exportUser.getUsername() + ".ser");
+		// if user already exists
+		if (f.exists()) {
+			// throw exception
+			throw new FileAlreadyExistsException(f.toString());
+		} else {
+			// update files/profile.ser with the new user
+			try {
+	            FileOutputStream out = new FileOutputStream(f);
+	            ObjectOutputStream oout = new ObjectOutputStream(out);
+	            oout.writeObject(exportUser);
+	            oout.close();
+	        } catch (Exception e) {
+	            System.out.println(e);
+	        }
+		}
+	}
+	
+	/**
+	 * Main method for testing purposes only.
+	 * Will be removed in final version.
+	 * @param args
 	 */
-    public void importSettings() {
-    	try {
-    		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./files/" + this.tagName + ".txt"));
-            Settings currentSettings = (Settings) ois.readObject();
-            FileOutputStream out = new FileOutputStream("./files/Settings.txt");
-            ObjectOutputStream oout = new ObjectOutputStream(out);
-            oout.writeObject(currentSettings);
-            oout.close();
-            ois.close();
-    	} catch (Exception e) {
-    		System.out.println(e);
-    	}
-    }
+	public static void main(String[] args) {
+		Settings s = new Settings();
+		User bob = new User("bob", "bob@gmail.com");
+//		try {
+//			s.exportSettings(bob);
+//		} catch (FileAlreadyExistsException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		try {
+			s.importSettings("bob");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

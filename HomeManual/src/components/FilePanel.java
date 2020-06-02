@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class FilePanel extends JPanel{
 
 	/**
-	 * 
+	 * Default serial Id.
 	 */
 	private static final long serialVersionUID = 1L;
 

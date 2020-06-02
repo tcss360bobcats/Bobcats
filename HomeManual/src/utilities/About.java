@@ -1,6 +1,5 @@
 package utilities;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -37,13 +36,12 @@ public class About {
 		String updateDate = LocalDate.now().toString();
 		PrintWriter writer = null;
 		try {
+			//"files/version.txt"
 			writer = new PrintWriter("files/version.txt", "UTF-8");
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		writer.println(updateDate);
@@ -57,13 +55,7 @@ public class About {
 	 * @return current version of project
 	 */
 	public static String getVersion() {
-		Scanner file = null;
-		try {
-			file = new Scanner(new File("files/version.txt"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Scanner file = new Scanner(About.class.getResourceAsStream("/files/version.txt"));
 		String version = file.nextLine();
 		file.close();
 		return version;

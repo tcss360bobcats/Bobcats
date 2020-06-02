@@ -3,6 +3,7 @@ package components;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.net.URL;
 
 import javax.swing.JPanel;
 import org.icepdf.ri.common.SwingController;
@@ -15,17 +16,32 @@ import org.icepdf.ri.common.SwingViewBuilder;
  */
 public class DisplayPanel extends JPanel {
 
+	/** Default serial ID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The swing controller to place inside the SwingViewBuilder. */
 	private static final SwingController myController = new SwingController();
+	
+	/** The swing view builder to display the items. */
 	private static final SwingViewBuilder myFactory = new SwingViewBuilder(myController);
 	
-	private String filePath;
+	/** The file path of the currently displayed item. */
+	private URL filePath;
+	
+	/** The panel to display the item. */
 	private JPanel myViewerComponentPanel;
 	
-	
+	/**
+	 * The display panel, displays the items
+	 * and their contents to the display area.
+	 * 
+	 * @author Darryl James
+	 */
     public DisplayPanel() {
     	// This Line is for Testing and Demo Purposes
-    	this.filePath = "pdf/c4611_sample_explain.pdf";
+    	this.filePath = this.getClass().getResource("/pdf/c4611_sample_explain.pdf");
+    	//System.out.println("This is " + filePath);
+    			//"pdf/c4611_sample_explain.pdf";
     	// This Line is for Testing and Demo Purposes
     	
         myViewerComponentPanel = myFactory.buildViewerPanel();
@@ -34,7 +50,13 @@ public class DisplayPanel extends JPanel {
     	setDisplay(filePath);
     }
     
-    public void setDisplay(String theFile) {
+    /**
+     * Sets the display item 
+     * on the display panel.
+     * @author Andrew Lim
+     * @param theFile the new item file to display
+     */
+    public void setDisplay(URL theFile) {
     	filePath = theFile;
     	removeAll();
         

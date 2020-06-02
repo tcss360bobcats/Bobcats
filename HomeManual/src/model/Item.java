@@ -1,7 +1,8 @@
 package model;
 
-import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,11 +13,16 @@ import java.util.Set;
  * @version 5/08/2020
  */
 public class Item implements Serializable {
+	/**
+	 * Default serial Id.
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** The name of the Item. */
 	private String myName;
 
 	/** The File object associated with the Item. */
-	private File myFile;
+	private URL myFile;
 
 	/** The Set of tags associated with the Item. */
 	private Set<String> myTags;
@@ -27,7 +33,7 @@ public class Item implements Serializable {
 	 * @param theName is the name of the Item.
 	 * @param theFile is the File to be associated with the Item.
 	 */
-	public Item(String theName, File theFile) {
+	public Item(String theName, URL theFile) {
 		this(theName, theFile, new HashSet<String>());
 	}
 
@@ -38,7 +44,7 @@ public class Item implements Serializable {
 	 * @param theFile is the File to be associated with the Item.
 	 * @param theTags is a Set of tags to be associated with the Item.
 	 */
-	public Item(String theName, File theFile, Set<String> theTags) {
+	public Item(String theName, URL theFile, Set<String> theTags) {
 		myName = theName;
 		myFile = theFile;
 		myTags = theTags; 
@@ -67,7 +73,7 @@ public class Item implements Serializable {
 	 * 
 	 * @param theFile is the File to be associated with the Item.
 	 */
-	public void setFile(File theFile) {
+	public void setFile(URL theFile) {
 		myFile = theFile;
 	}
 
@@ -75,8 +81,9 @@ public class Item implements Serializable {
 	 * Returns the File associated with the Item.
 	 * 
 	 * @return the File associated with the Item.
+	 * @throws IOException 
 	 */
-	public File getFile() {
+	public URL getFile() {
 		return myFile;
 	}
 
@@ -95,10 +102,7 @@ public class Item implements Serializable {
 	 * @param theTags is the Set of tags to add to the Item.
 	 */
 	public void addTags(Set<String> theTags) {
-		
 		for (String tag : theTags) myTags.add(tag.toLowerCase());
-		
-//		myTags.addAll(theTags);
 	}
 
 	/**
