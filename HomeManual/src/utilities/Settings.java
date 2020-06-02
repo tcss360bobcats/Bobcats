@@ -22,8 +22,8 @@ public class Settings {
 		
 	}
 	
-	public void importSettings(User importUser) throws FileNotFoundException {
-		File f = new File("./users/" + importUser.getUsername() + ".ser");
+	public void importSettings(String username) throws FileNotFoundException {
+		File f = new File("./users/" + username + ".ser");
 		// if user does not exist
 		if (!f.exists()) {
 			// throw exception
@@ -71,17 +71,17 @@ public class Settings {
 	public static void main(String[] args) {
 		Settings s = new Settings();
 		User bob = new User("bob", "bob@gmail.com");
-		try {
-			s.exportSettings(bob);
-		} catch (FileAlreadyExistsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 //		try {
-//			s.importSettings(bob);
-//		} catch (FileNotFoundException e) {
+//			s.exportSettings(bob);
+//		} catch (FileAlreadyExistsException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		try {
+			s.importSettings("bob");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
