@@ -12,7 +12,10 @@ public class User implements Serializable {
 	 * A default serial id.
 	 */
 	private static final long serialVersionUID = 2128034274378880644L;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> d202dc3e37e9725b57250837b6c0ddf570061f15
 	private String username;
 	private String email;
 	

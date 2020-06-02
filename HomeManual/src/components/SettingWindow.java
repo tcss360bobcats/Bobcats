@@ -3,6 +3,7 @@ package components;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import java.io.ObjectInputStream;
@@ -42,7 +43,7 @@ public class SettingWindow extends JFrame {
 		 * @author Andrew Lim
 		 */		
 		try {
-			ObjectInputStream ois = new ObjectInputStream(this.getClass().getResourceAsStream("/files/profile.ser"));
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./src/files/profile.ser"));
 	        user = (User) ois.readObject();
 	        ois.close();
 		} catch (Exception e) {
@@ -119,6 +120,16 @@ public class SettingWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					s.importSettings(usernameImport.getText());
+					try {
+						ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./src/files/profile.ser"));
+				        user = (User) ois.readObject();
+				        usernameText.setText(user.getUsername());
+				        emailText.setText(user.getEmail());
+				        ois.close();
+					} catch (Exception e1) {
+						System.out.println(e1);
+					}
+					
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
