@@ -1,5 +1,10 @@
 package components;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,10 +15,23 @@ public class SettingWindow extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 2545946456909824902L;
-	JLabel usernameText;
-	JLabel emailText;
+	private User user;
+	private JLabel usernameText;
+	private JLabel emailText;
 	
 	public SettingWindow() {
+		/**
+		 * get the user in files/profile.ser
+		 * profile.ser contains the current user of the application
+		 * @author Andrew Lim
+		 */
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./files/profile.ser"));
+	        user = (User) ois.readObject();
+	        ois.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}	
 		setSize(300, 250);
 		add(createWindow());
 		setVisible(true);
@@ -32,6 +50,24 @@ public class SettingWindow extends JFrame {
 		master.add(emailSettings());
 		master.add(importButton);
 		master.add(exportButton);
+		/**
+		 * @author Andrew Lim
+		 */
+		importButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		/**
+		 * @author Andrew Lim
+		 */
+		exportButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		return master;
 	}
 	
@@ -43,7 +79,7 @@ public class SettingWindow extends JFrame {
 	public JPanel usernameSettings() {	
 		JPanel usernamePanel = new JPanel();
 		JLabel usernameLabel = new JLabel("Username: ");
-		usernameText = new JLabel("Bob");
+		usernameText = new JLabel(user.getUsername());
 		usernamePanel.add(usernameLabel);
 		usernamePanel.add(usernameText);
 		return usernamePanel;
@@ -57,7 +93,7 @@ public class SettingWindow extends JFrame {
 	public JPanel emailSettings() {
 		JPanel emailPanel = new JPanel();
 		JLabel emailLabel = new JLabel("Email: ");
-		emailText = new JLabel("bob@gmail.com");
+		emailText = new JLabel(user.getEmail());
 		emailPanel.add(emailLabel);
 		emailPanel.add(emailText);
 		return emailPanel;
