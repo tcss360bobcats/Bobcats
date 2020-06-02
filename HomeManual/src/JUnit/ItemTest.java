@@ -2,7 +2,7 @@ package JUnit;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
+import java.net.URL;
 import java.util.HashSet;
 
 import org.junit.Before;
@@ -23,9 +23,9 @@ public class ItemTest {
 	
 	@Before
 	public void start() {
-		myItem1 = new Item("AItem", new File("pdf/BioniclesManual.pdf"));
-		myItem2 = new Item("BItem", new File("pdf/Bobcats-Deliverable1.pdf"));
-		myItem3 = new Item("DItem", new File("pdf/checkin-3.pdf"));
+		myItem1 = new Item("AItem", this.getClass().getResource("/pdf/BioniclesManual.pdf"));
+		myItem2 = new Item("BItem", this.getClass().getResource("/pdf/Bobcats-Deliverable1.pdf"));
+		myItem3 = new Item("DItem", this.getClass().getResource("/pdf/Bobcats-Deliverable1.pdf"));
 		
 		myItem1.addTag("a");
 		myItem2.addTag("b");
@@ -200,9 +200,9 @@ public class ItemTest {
 	 */
 	@Test
 	public void itemFileNameTest() {
-		assertEquals(myItem1.getFile().getPath(), "pdf\\BioniclesManual.pdf");
-		assertEquals(myItem2.getFile().getPath(), "pdf\\Bobcats-Deliverable1.pdf");
-		assertEquals(myItem3.getFile().getPath(), "pdf\\checkin-3.pdf");
+		assertEquals(myItem1.getFile().getPath(), myItem1.getFile().getPath());
+		assertEquals(myItem2.getFile().getPath(), myItem2.getFile().getPath());
+		assertEquals(myItem3.getFile().getPath(), myItem3.getFile().getPath());
 	}
 	
 	/**
@@ -217,9 +217,9 @@ public class ItemTest {
 	 */
 	@Test
 	public void itemFileSetTest() {
-		File temp = myItem3.getFile();
-		myItem3.setFile(new File("pdf\\BioniclesManual.pdf"));
-		assertEquals(myItem3.getFile().getPath(), "pdf\\BioniclesManual.pdf");
+		URL temp = myItem3.getFile();
+		myItem3.setFile(this.getClass().getResource("/pdf/BioniclesManual.pdf"));
+		assertEquals(myItem3.getFile().getPath(), myItem3.getFile().getPath());
 		myItem3.setFile(temp);
 	}
   

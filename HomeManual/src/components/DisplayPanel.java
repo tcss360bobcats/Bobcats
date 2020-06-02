@@ -3,6 +3,7 @@ package components;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.net.URL;
 
 import javax.swing.JPanel;
 import org.icepdf.ri.common.SwingController;
@@ -25,7 +26,7 @@ public class DisplayPanel extends JPanel {
 	private static final SwingViewBuilder myFactory = new SwingViewBuilder(myController);
 	
 	/** The file path of the currently displayed item. */
-	private String filePath;
+	private URL filePath;
 	
 	/** The panel to display the item. */
 	private JPanel myViewerComponentPanel;
@@ -38,7 +39,9 @@ public class DisplayPanel extends JPanel {
 	 */
     public DisplayPanel() {
     	// This Line is for Testing and Demo Purposes
-    	this.filePath = "pdf/c4611_sample_explain.pdf";
+    	this.filePath = this.getClass().getResource("/pdf/c4611_sample_explain.pdf");
+    	//System.out.println("This is " + filePath);
+    			//"pdf/c4611_sample_explain.pdf";
     	// This Line is for Testing and Demo Purposes
     	
         myViewerComponentPanel = myFactory.buildViewerPanel();
@@ -53,7 +56,7 @@ public class DisplayPanel extends JPanel {
      * @author Andrew Lim
      * @param theFile the new item file to display
      */
-    public void setDisplay(String theFile) {
+    public void setDisplay(URL theFile) {
     	filePath = theFile;
     	removeAll();
         

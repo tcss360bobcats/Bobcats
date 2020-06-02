@@ -2,7 +2,6 @@ package JUnit;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -34,8 +33,8 @@ public class RoomTest {
 		myRoom = new Room("TestRoom");
 		myItems = new ArrayList<Item>();
 		
-		myTestItem1 = new Item("AItem", new File("pdf/BioniclesManual.pdf"));
-		myTestItem2 = new Item("BItem", new File("pdf/Bobcats-Deliverable1.pdf"));
+		myTestItem1 = new Item("AItem", this.getClass().getResource("/pdf/BioniclesManual.pdf"));
+		myTestItem2 = new Item("BItem", this.getClass().getResource("pdf/Bobcats-Deliverable1.pdf"));
 		
 		myItems.add(myTestItem1);
 		myRoom.addItem(myTestItem1);
