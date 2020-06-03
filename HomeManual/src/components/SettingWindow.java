@@ -30,6 +30,7 @@ public class SettingWindow extends JFrame {
 	private User user;
 	private JLabel usernameText;
 	private JLabel emailText;
+	private JLabel successErrorMessage;
 	private JTextField usernameImport;
 	private JTextField usernameExport;
 	private JTextField emailExport;
@@ -51,7 +52,7 @@ public class SettingWindow extends JFrame {
 		} catch (Exception e) {
 			System.out.println(e);
 		}	
-		setSize(500, 150);
+		setSize(500, 165);
 		setResizable(false);
 		add(createWindow());
 		setVisible(true);
@@ -73,14 +74,19 @@ public class SettingWindow extends JFrame {
 		JPanel center = new JPanel();	
 		center.add(importButton);
 		center.add(exportButton);
-		master.add(center, BorderLayout.CENTER);
+//		master.add(center, BorderLayout.CENTER);
 		JPanel importForm = importForm();
 		JPanel exportForm = exportForm();
 		importForm.setVisible(false);
 		exportForm.setVisible(false);
 		JPanel south = new JPanel();
-		south.add(importForm);
-		south.add(exportForm);
+		successErrorMessage = new JLabel();
+//		south.add(importForm);
+//		south.add(exportForm);
+		center.add(importForm);
+		center.add(exportForm);
+		south.add(successErrorMessage);
+		master.add(center, BorderLayout.CENTER);
 		master.add(south, BorderLayout.SOUTH);
 		/**
 		 * @author Andrew Lim
@@ -132,9 +138,11 @@ public class SettingWindow extends JFrame {
 					} catch (Exception e1) {
 						System.out.println(e1);
 					}
-					
+					// display success message: user settings successfully imported
+					successErrorMessage.setText("User settings successfully imported.");
 				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
+					// display error message: user does not exist
+					successErrorMessage.setText("Error: User does not exist. Please try a different username.");
 					e1.printStackTrace();
 				}
 			}
@@ -165,8 +173,11 @@ public class SettingWindow extends JFrame {
 				User exportUser = new User(usernameExport.getText(), emailExport.getText());
 				try {
 					s.exportSettings(exportUser);
+					// display success message: user setting successfully exported
+					successErrorMessage.setText("User settings successfully exported.");
 				} catch (FileAlreadyExistsException e1) {
-					// TODO Auto-generated catch block
+					// display error message: user already exists
+					successErrorMessage.setText("Error: User already exists. Please try a different username.");
 					e1.printStackTrace();
 				}
 			}
