@@ -39,7 +39,7 @@ public class SearchPanel extends JPanel{
 	private JButton mySearchButton;
 	
 	/** The file panel to show items*/
-	private FilePanel myFilePanel;
+	private JPanel myFilePanel;
 	
 	/** The display panel to show notifications.*/
 	private DisplayPanel myDisplayPanel;
@@ -49,7 +49,7 @@ public class SearchPanel extends JPanel{
 	 * Panel with a text field and button to submit entry.
 	 * @author Anthony
 	 */
-	public SearchPanel(FilePanel theFilePanel, DisplayPanel theDisplayPanel) {
+	public SearchPanel(JPanel theFilePanel, DisplayPanel theDisplayPanel) {
 		myFilePanel = theFilePanel;
 		myDisplayPanel = theDisplayPanel;
 		mySearchBox = createSearchBox();

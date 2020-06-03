@@ -112,19 +112,22 @@ public class ManualGUI extends JFrame {
 
 		final FilePanel filePanel = new FilePanel(roomList, displayPanel);
 		filePanel.setLayout(new BoxLayout(filePanel, WIDTH));
-
+		
+		final JPanel itemPanel = new JPanel();
+		itemPanel.setLayout(new BoxLayout(itemPanel, WIDTH));
+		
 		// Makes the Scroll Bar appear and resizes its width
 		final JScrollPane scrollPane = new JScrollPane(FilePanel.createTree(roomList, displayPanel));	
-        final JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
+		final JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
         scrollBar.setPreferredSize(new Dimension(12, 12));
-
+        
         // Style the scroll bar with increments per scroll and when we will see the bar
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.getVerticalScrollBar().setUnitIncrement(10);
         scrollPane.setVerticalScrollBar(scrollBar);
-        
-        // The search panel to enter  tags/keywords
-		final SearchPanel searchPanel = new SearchPanel(filePanel, displayPanel);
+                
+        // The search panel to enter tags/keywords
+		final SearchPanel searchPanel = new SearchPanel(itemPanel, displayPanel);
 		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 4);
 		searchPanel.attachList(allItems);
 					
@@ -132,6 +135,7 @@ public class ManualGUI extends JFrame {
 		final JPanel westPanel = new JPanel(new BorderLayout());
 		westPanel.add(searchPanel, BorderLayout.NORTH);		
 		westPanel.add(scrollPane);
+		westPanel.add(itemPanel, BorderLayout.SOUTH);
 		
 		// The master panel that holds all the components to display to the user.
 		final JPanel masterPanel = new JPanel(new BorderLayout());
