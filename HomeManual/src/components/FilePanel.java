@@ -1,12 +1,18 @@
 package components;
 
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 import model.Item;
 import model.Room;
@@ -22,27 +28,31 @@ public class FilePanel extends JPanel {
 	 * Default serial Id.
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static DisplayPanel myDisplay;
 
 	/**
 	 * Contains the file system. 
 	 * @author Anthony
 	 */
-	public FilePanel(ArrayList<Room> theRooms) {
+	public FilePanel(ArrayList<Room> theRooms, DisplayPanel theDisplay) {
 		setVisible(true);
-		add(createTree(theRooms));
+		add(createTree(theRooms, theDisplay));
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
-	private JTree createTree(ArrayList<Room> theRooms) {
+	public static JTree createTree(ArrayList<Room> theRooms, DisplayPanel theDisplay) {
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode();
+		myDisplay = theDisplay;
 		createNodes(theRooms, top);
 		JTree jt = new JTree(top);
 		jt.setRootVisible(false);
+		setUpListener(jt);
 		
 		return jt;
 	}
 	
-	private void createNodes(ArrayList<Room> theRooms, DefaultMutableTreeNode theTop) {
+	private static void createNodes(ArrayList<Room> theRooms, DefaultMutableTreeNode theTop) {
 		for(Room r : theRooms) {
 			DefaultMutableTreeNode node = new DefaultMutableTreeNode(r);
 			for(Item i : r.getItems()) {
@@ -51,5 +61,19 @@ public class FilePanel extends JPanel {
 			}
 			theTop.add(node);
 		}
+	}
+
+	private static void setUpListener(JTree theTree) {
+		theTree.addTreeSelectionListener(new TreeSelectionListener() {
+			public void valueChanged(TreeSelectionEvent e) {
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) theTree.getLastSelectedPathComponent();
+				
+				Object nodeObject = node.getUserObject();
+				if(node.isLeaf()) {
+					Item item = (Item) nodeObject;
+					myDisplay.setDisplay(item.getFile());
+				}
+			}
+		});
 	}
 }

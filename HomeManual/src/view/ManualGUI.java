@@ -110,11 +110,11 @@ public class ManualGUI extends JFrame {
 		ArrayList<Room> roomList = new ArrayList<Room>();
 		roomList.add(room);
 
-		final FilePanel filePanel = new FilePanel(roomList);
+		final FilePanel filePanel = new FilePanel(roomList, displayPanel);
 		filePanel.setLayout(new BoxLayout(filePanel, WIDTH));
 
 		// Makes the Scroll Bar appear and resizes its width
-		final JScrollPane scrollPane = new JScrollPane(filePanel);	
+		final JScrollPane scrollPane = new JScrollPane(FilePanel.createTree(roomList, displayPanel));	
         final JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
         scrollBar.setPreferredSize(new Dimension(12, 12));
 
@@ -125,7 +125,7 @@ public class ManualGUI extends JFrame {
         
         // The search panel to enter  tags/keywords
 		final SearchPanel searchPanel = new SearchPanel(filePanel, displayPanel);
-		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 8);
+		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 4);
 		searchPanel.attachList(allItems);
 					
 		// Left file display system
