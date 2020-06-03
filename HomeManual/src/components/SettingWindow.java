@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+
 import java.io.ObjectInputStream;
 import java.nio.file.FileAlreadyExistsException;
 
@@ -44,7 +45,7 @@ public class SettingWindow extends JFrame {
 		 * get the user in files/profile.ser
 		 * profile.ser contains the current user of the application
 		 * @author Andrew Lim
-		 */
+		 */		
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./src/files/profile.ser"));
 	        user = (User) ois.readObject();
