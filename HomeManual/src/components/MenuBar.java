@@ -54,7 +54,7 @@ public class MenuBar extends JMenuBar{
 		final JMenu file = new JMenu("File");
 		// TODO: add file toolbar options
 		final JMenuItem settings = new JMenuItem("Settings");
-		settings.addActionListener(theEvent -> new SettingWindow().setTitle("Settings"));
+		settings.addActionListener(theEvent -> new SettingsWindow().setTitle("Settings"));
 		file.add(settings);
 			
 		return file;

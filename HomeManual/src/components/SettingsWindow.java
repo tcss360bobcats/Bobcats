@@ -22,7 +22,7 @@ import utilities.Settings;
  * Displays settings options of the application.
  * @author Anthony, Andrew
  */
-public class SettingWindow extends JFrame {
+public class SettingsWindow extends JFrame {
 	/**
 	 * A default serial id.
 	 */
@@ -39,7 +39,7 @@ public class SettingWindow extends JFrame {
 	/**
 	 * @author Anthony
 	 */
-	public SettingWindow() {
+	public SettingsWindow() {
 		this.s = new Settings();
 		/**
 		 * get the user in files/profile.ser
