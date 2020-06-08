@@ -74,25 +74,4 @@ public class Settings {
 		}
 	}
 	
-	/**
-	 * Main method for testing purposes only.
-	 * Will be removed in final version.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		Settings s = new Settings();
-		User bob = new User("bob", "bob@gmail.com");
-//		try {
-//			s.exportSettings(bob);
-//		} catch (FileAlreadyExistsException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		try {
-			s.importSettings("bob");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }
