@@ -122,6 +122,7 @@ class TreePopup extends JPopupMenu {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("DELETE");
 				//TODO Remove the item 
+				
 			}	
 		});
 		add(delete);
