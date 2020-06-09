@@ -53,7 +53,7 @@ public class SettingsWindow extends JFrame {
 		} catch (Exception e) {
 			System.out.println(e);
 		}	
-		setSize(500, 165);
+		setSize(500, 200);
 		setResizable(false);
 		add(createWindow());
 		setVisible(true);
