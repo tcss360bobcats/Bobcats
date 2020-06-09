@@ -1,14 +1,23 @@
 package components;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 import model.Item;
 import model.Room;
@@ -44,7 +53,7 @@ public class FilePanel extends JPanel {
 		JTree jt = new JTree(top);
 		jt.setRootVisible(false);
 		setUpListener(jt);
-		
+		addRightClickListener(jt);
 		return jt;
 	}
 	
@@ -71,5 +80,50 @@ public class FilePanel extends JPanel {
 				}
 			}
 		});
+			
+	}
+	
+	/**
+	 * Creates a popup menu when an item on the JTree is rightclicked 
+	 * @author Anthony Nguyen
+	 * @param theTree
+	 */
+	private static void addRightClickListener(JTree theTree) {
+		
+		TreePopup treePopup = new TreePopup(theTree);
+	    theTree.addMouseListener(new MouseAdapter() {
+	    	public void mouseReleased(MouseEvent e) {
+	    		if(e.isPopupTrigger()) {
+	    	        TreePath selPath = theTree.getPathForLocation(e.getX(), e.getY());
+	    			theTree.setSelectionPath(selPath);
+	    			treePopup.show(e.getComponent(), e.getX(), e.getY());
+	                
+	             }
+	    	}
+	    });	
+	}
+}
+
+/**
+ * Popup menu for the JTree.
+ * @author Anthony
+ *
+ */
+class TreePopup extends JPopupMenu {
+	
+	JTree myTree;
+	
+	public TreePopup(JTree theTree) {
+		myTree = theTree;
+		JMenuItem delete = new JMenuItem("Delete");
+		
+		delete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("DELETE");
+				//TODO Remove the item 
+			}	
+		});
+		add(delete);
 	}
 }
