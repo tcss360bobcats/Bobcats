@@ -94,6 +94,8 @@ public class FilePanel extends JPanel {
 	    theTree.addMouseListener(new MouseAdapter() {
 	    	public void mouseReleased(MouseEvent e) {
 	    		if(e.isPopupTrigger()) {
+	    	        TreePath selPath = theTree.getPathForLocation(e.getX(), e.getY());
+	    			theTree.setSelectionPath(selPath);
 	    			treePopup.show(e.getComponent(), e.getX(), e.getY());
 	                
 	             }
@@ -114,10 +116,12 @@ class TreePopup extends JPopupMenu {
 	public TreePopup(JTree theTree) {
 		myTree = theTree;
 		JMenuItem delete = new JMenuItem("Delete");
+		
 		delete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("DELETE");
+				//TODO Remove the item 
 			}	
 		});
 		add(delete);
