@@ -2,7 +2,6 @@ package utilities;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -37,11 +36,9 @@ public class About {
 		PrintWriter writer = null;
 		try {
 			//"files/version.txt"
-			writer = new PrintWriter("files/version.txt", "UTF-8");
+			writer = new PrintWriter("src/files/version.txt");
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		writer.println(updateDate);
