@@ -71,7 +71,11 @@ public class MenuBar extends JMenuBar{
 		// TODO: add edit toolbar options
 		final JMenuItem addItem = new JMenuItem("Add Item");
 		addItem.addActionListener(theEvent -> new AddItemWindow());
+		final JMenuItem addRoom = new JMenuItem("Add Room");
+		addRoom.addActionListener(theEvent -> new AddRoomWindow());
+		
 		edit.add(addItem);
+		edit.add(addRoom);
 		
 		return edit;
 	}
