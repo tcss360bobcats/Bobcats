@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Iterator;
 
 import model.Item;
 import model.Room;
@@ -24,16 +25,19 @@ public class FileSystem implements Serializable {
 	 */
 	private static final long serialVersionUID = -8801974321963152918L;
 
+	private static HashSet<Room> myRooms;
+	
 	public static HashSet<Room> initialize() {
 		HashSet<Room> rooms = new HashSet<Room>();
+		myRooms = rooms;
 		
 		ObjectInputStream ois = null;
 		FileInputStream fin = null;
 		try {
-			fin = new FileInputStream("test/room_test.ser");
+			fin = new FileInputStream("rooms/test/room_test.ser");
 			ois = new ObjectInputStream(fin);
 			Room test = (Room) ois.readObject();
-			rooms.add(test);
+			myRooms.add(test);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,7 +47,7 @@ public class FileSystem implements Serializable {
 			}
 		}
 		
-		return rooms;
+		return myRooms;
 	}
 	
 	public static void write(Room room) {
@@ -65,17 +69,34 @@ public class FileSystem implements Serializable {
 					} catch(Exception e) {}
 			}
 		}
-		
-//		for(Item i : room.getItems()) {
-//			
-//		}
 	}
 	
-	public static void delete(Item item) {
-		//delete object from file system
+	public static void delete(Room theRoom, Item theItem) {
+		Iterator<Room> i = myRooms.iterator();
+		while(i.hasNext()) {
+			Room room = i.next();
+			if(room.getName().contentEquals(theRoom.getName())) {
+				theRoom.getItems().remove(theItem);
+				break;
+			}
+		}
+		write(theRoom);
 	}
 	
-	public static void delete(Room room) {
-		//delete whole room and items from file system
+	public static void delete(Room theRoom) {
+		Iterator<Room> i = myRooms.iterator();
+		while(i.hasNext()) {
+			Room room = i.next();
+			if(room.getName().equals(theRoom.getName())) {
+				File file = new File(FOLDER + theRoom.getName());
+				
+				String[] entries = file.list();
+				for(String s : entries) {
+					File currentFile = new File(file.getPath(), s);
+					currentFile.delete();
+				}
+				file.delete();
+			}
+		}
 	}
 }

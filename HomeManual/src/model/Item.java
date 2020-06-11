@@ -14,9 +14,9 @@ import java.util.Set;
  */
 public class Item implements Serializable {
 	/**
-	 * Default serial Id.
+	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -1714051650257532647L;
 
 	/** The name of the Item. */
 	private String myName;

@@ -13,7 +13,11 @@ public class Room implements Serializable {
 	/**
 	 * Default serial Id.
 	 */
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6678996192637647153L;
 
 	/** The name of the Room. */
 	private String myName;

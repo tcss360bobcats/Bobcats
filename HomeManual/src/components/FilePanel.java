@@ -18,6 +18,7 @@ import javax.swing.tree.TreePath;
 
 import model.Item;
 import model.Room;
+import utilities.FileSystem;
 
 /**
  * Panel that displays the file system to the user. 
@@ -58,6 +59,7 @@ public class FilePanel extends JPanel {
 			DefaultMutableTreeNode node = new DefaultMutableTreeNode(r);
 			for(Item i : r.getItems()) {
 				DefaultMutableTreeNode itemNode = new DefaultMutableTreeNode(i);
+				itemNode.setAllowsChildren(false);
 				node.add(itemNode);
 			}
 			theTop.add(node);
@@ -118,9 +120,6 @@ class TreePopup extends JPopupMenu {
 				//deletes the node from the tree and the object associate with the node from the app
 				System.out.println("DELETE");
 
-				//TODO Remove the item 
-				
-
                 DefaultTreeModel model = (DefaultTreeModel) theTree.getModel();
                 TreePath[] paths = theTree.getSelectionPaths();
                 if (paths != null) {
@@ -128,9 +127,17 @@ class TreePopup extends JPopupMenu {
                         DefaultMutableTreeNode node = (DefaultMutableTreeNode) 
                             path.getLastPathComponent();
                         if (node.getParent() != null) {
-                        	Item tempItem = (Item) node.getUserObject();
-                        	//TODO REMOVE ITEM FUNCTION 
-                            model.removeNodeFromParent(node);
+                        	if(node.getAllowsChildren()) {
+                            	Room tempRoom = (Room) node.getUserObject();
+                            	FileSystem.delete(tempRoom);
+                                model.removeNodeFromParent(node);
+                        	} else {
+                        		Room tempRoom = (Room) ((DefaultMutableTreeNode) node.getParent()).getUserObject();
+                        		
+                            	Item tempItem = (Item) node.getUserObject();
+                            	FileSystem.delete(tempRoom, tempItem);
+                                model.removeNodeFromParent(node);
+                        	}
                         }
                     }
                 }

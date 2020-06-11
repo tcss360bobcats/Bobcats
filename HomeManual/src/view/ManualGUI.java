@@ -17,6 +17,7 @@ import components.SearchPanel;
 import components.DisplayPanel;
 import model.Item;
 import model.Room;
+import utilities.FileSystem;
 
 /**
  * ManualGUI is the GUI for the HomeManual app.
@@ -97,7 +98,7 @@ public class ManualGUI extends JFrame {
 	 * @author Anthony
 	 */
 	private void initGUI() {
-		
+		FileSystem.initialize();
 		// Generate the list of items from a file
 		ArrayList<Item> allItems = getItems(); 
 		
@@ -109,6 +110,7 @@ public class ManualGUI extends JFrame {
 		Room room = new Room("test", allItems);
 		ArrayList<Room> roomList = new ArrayList<Room>();
 		roomList.add(room);
+		FileSystem.write(room);
 
 		final FilePanel filePanel = new FilePanel(roomList, displayPanel);
 		filePanel.setLayout(new BoxLayout(filePanel, WIDTH));
