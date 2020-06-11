@@ -12,7 +12,7 @@ public final class ManualMain {
 	
 	/**
 	 * Constructs the main GUI window frame
-	 * 
+	 * @author Anthony
 	 * @param theArgs Command line arguments (ignored).
 	 */
 	public static void main(String[] theArgs) {

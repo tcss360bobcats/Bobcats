@@ -110,7 +110,11 @@ public class MenuBar extends JMenuBar{
 		});
 		return about;
 	}
-	
+	/**
+	 * Button that allows the user to log in
+	 * @author Anthony Nguyen
+	 * @return login button
+	 */
 	private JMenuItem createLoginButton() {
 		//Lets the admin login with the password 1234
 		final JMenuItem login = new JMenuItem("Admin Log In...");
