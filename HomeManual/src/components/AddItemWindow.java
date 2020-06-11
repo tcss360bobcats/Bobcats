@@ -64,17 +64,16 @@ public class AddItemWindow extends JFrame {
 		
 		JPanel filePanel = new JPanel();
 		JFileChooser file = new JFileChooser();
-//		JLabel nameOfFile = new JLabel("File Path: ");
-//		filePanel.add(nameOfFile);
+
 		filePanel.add(file);
 		
 		JButton submit = new JButton("Add Item");
 		submit.addActionListener(theEvent -> {
-			// Something goes here
+
 			String aName = name.getText();
 			String[] someTags = tags.getText().split(" ");
 			String aFileName = file.getSelectedFile().getAbsolutePath();
-			// FileWriter fw = new FileWriter(this.getClass().getResource("/files/testItemFile.txt").getFile().toString(), true)
+
 			try (FileWriter fw = new FileWriter("./res/files/testItemFile.txt", true); 
 				 BufferedWriter bw = new BufferedWriter(fw);
 				 PrintWriter out = new PrintWriter(bw)){
@@ -86,12 +85,7 @@ public class AddItemWindow extends JFrame {
 				out.close();
 				fw.close();
 				bw.close();
-//				System.out.println("Success");
-//				System.out.println(aName);
-//				System.out.println(aFileName);
-//				System.out.println(Arrays.toString(someTags));
-				
-				//System.out.println(this.getClass().getResource("/files/testItemFile.txt").getFile().toString());
+
 			} catch (Exception e) {
 				System.out.println("Something went wrong with the add item process");
 				e.printStackTrace();
