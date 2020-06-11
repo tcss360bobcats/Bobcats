@@ -34,7 +34,7 @@ public class FileSystem implements Serializable {
 		ObjectInputStream ois = null;
 		FileInputStream fin = null;
 		try {
-			fin = new FileInputStream("rooms/test/room_test.ser");
+			fin = new FileInputStream("./rooms/test/room_test.ser");
 			ois = new ObjectInputStream(fin);
 			Room test = (Room) ois.readObject();
 			myRooms.add(test);

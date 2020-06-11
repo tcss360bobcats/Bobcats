@@ -5,7 +5,6 @@ package components;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.Arrays;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -76,7 +75,7 @@ public class AddItemWindow extends JFrame {
 			String[] someTags = tags.getText().split(" ");
 			String aFileName = file.getSelectedFile().getAbsolutePath();
 			// FileWriter fw = new FileWriter(this.getClass().getResource("/files/testItemFile.txt").getFile().toString(), true)
-			try (FileWriter fw = new FileWriter("./src/files/testItemFile.txt", true); 
+			try (FileWriter fw = new FileWriter("./res/files/testItemFile.txt", true); 
 				 BufferedWriter bw = new BufferedWriter(fw);
 				 PrintWriter out = new PrintWriter(bw)){
 				out.print("\n" + aName + ", " + aFileName + ", ");
@@ -87,12 +86,12 @@ public class AddItemWindow extends JFrame {
 				out.close();
 				fw.close();
 				bw.close();
-				System.out.println("Success");
-				System.out.println(aName);
-				System.out.println(aFileName);
-				System.out.println(Arrays.toString(someTags));
+//				System.out.println("Success");
+//				System.out.println(aName);
+//				System.out.println(aFileName);
+//				System.out.println(Arrays.toString(someTags));
 				
-				System.out.println(this.getClass().getResource("/files/testItemFile.txt").getFile().toString());
+				//System.out.println(this.getClass().getResource("/files/testItemFile.txt").getFile().toString());
 			} catch (Exception e) {
 				System.out.println("Something went wrong with the add item process");
 				e.printStackTrace();
@@ -104,7 +103,6 @@ public class AddItemWindow extends JFrame {
 		window.add(tagsPanel);
 		window.add(filePanel);
 		window.add(submit);
-		
 		
 		return window;
 	}

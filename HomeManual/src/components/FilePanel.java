@@ -93,6 +93,7 @@ public class FilePanel extends JPanel {
 					if(node.isLeaf()) {
 						Item item = (Item) nodeObject;
 						myDisplay.setDisplay(item.getFile());
+						
 					}
 	    		}
 	    	}
