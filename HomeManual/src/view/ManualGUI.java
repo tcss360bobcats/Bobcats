@@ -5,8 +5,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -61,7 +61,7 @@ public class ManualGUI extends JFrame {
 	 */
 	private ArrayList<Item> getItems() {
 		ArrayList<Item> allItems = new ArrayList<Item>();
-		try(BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResource("/files/testItemFile.txt").openStream()))) {
+		try(BufferedReader br = new BufferedReader(new FileReader("./res/files/testItemFile.txt"))) {
 			String line = br.readLine();
 			
 			while(line != null) {
@@ -70,13 +70,12 @@ public class ManualGUI extends JFrame {
 				String name = temp[0];
 				
 				// The File location for the item
-				String file = "/" + temp[1];
+				String file = "./" + temp[1];
 				
 				// The tags/keywords associated with the item
 				String[] tags = temp[2].split(" ");
 				
-				//System.out.println(this.getClass().getResource(file).getFile().toString());
-				Item A = new Item(name, this.getClass().getResource(file));
+				Item A = new Item(name, file);
 				for (String tag : tags) A.addTag(tag);
 				allItems.add(A);
 				
