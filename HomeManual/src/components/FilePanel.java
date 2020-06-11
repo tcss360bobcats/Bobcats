@@ -117,10 +117,10 @@ class TreePopup extends JPopupMenu {
 			public void actionPerformed(ActionEvent arg0) {
 				//deletes the node from the tree and the object associate with the node from the app
 				System.out.println("DELETE");
-<<<<<<< HEAD
+
 				//TODO Remove the item 
 				
-=======
+
                 DefaultTreeModel model = (DefaultTreeModel) theTree.getModel();
                 TreePath[] paths = theTree.getSelectionPaths();
                 if (paths != null) {
@@ -134,7 +134,7 @@ class TreePopup extends JPopupMenu {
                         }
                     }
                 }
->>>>>>> remove_item
+
 			}	
 		});
 		add(delete);
