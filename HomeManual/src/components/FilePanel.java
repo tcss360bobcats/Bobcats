@@ -105,6 +105,10 @@ public class FilePanel extends JPanel {
  */
 class TreePopup extends JPopupMenu {
 	
+	/**
+	 * A serial Id.
+	 */
+	private static final long serialVersionUID = 7718466007899617854L;
 	JTree myTree;
 	
 	public TreePopup(JTree theTree) {
