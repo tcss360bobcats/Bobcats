@@ -1,3 +1,5 @@
+
+
 package components;
 
 import javax.swing.BoxLayout;
@@ -8,19 +10,36 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * The AddItemWindow class displays the window
+ * to add items into the application
+ * 
+ * @author Darryl James
+ */
 public class AddItemWindow extends JFrame {
 
 	/**
-	 * 
+	 * The default serial ID.
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Sets the size of the window
+	 * and creates the window to display
+	 * the file directory to choose items.
+	 */
 	public AddItemWindow() {
 		setSize(800, 600);
 		add(createWindow());
 		setVisible(true);
 	}
 	
+	/**
+	 * Creates the window to display
+	 * the files to add to the program.
+	 * 
+	 * @return the window to add files.
+	 */
 	private JPanel createWindow() {
 		JPanel window = new JPanel();
 		window.setLayout(new BoxLayout(window, BoxLayout.PAGE_AXIS));
@@ -60,3 +79,4 @@ public class AddItemWindow extends JFrame {
 	
 
 }
+	
