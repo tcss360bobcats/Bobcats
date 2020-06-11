@@ -29,7 +29,7 @@ public class Settings {
 	 * @throws FileNotFoundException thrown if user does not exist.
 	 */
 	public void importSettings(String username) throws FileNotFoundException {
-		File f = new File("./src/users/" + username + ".ser");
+		File f = new File("./res/users/" + username + ".ser");
 		// if user does not exist
 		if (!f.exists()) {
 			// throw exception
@@ -39,7 +39,7 @@ public class Settings {
 			try {
 	            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
 	            User importedUser = (User) ois.readObject();
-	            FileOutputStream out = new FileOutputStream("./src/files/profile.ser");
+	            FileOutputStream out = new FileOutputStream("./res/files/profile.ser");
 	            ObjectOutputStream oout = new ObjectOutputStream(out);
 	            oout.writeObject(importedUser);
 	            oout.close();
@@ -56,7 +56,7 @@ public class Settings {
 	 * @throws FileAlreadyExistsException thrown if user already exists.
 	 */
 	public void exportSettings(User exportUser) throws FileAlreadyExistsException {
-		File f = new File("./src/users/" + exportUser.getUsername() + ".ser");
+		File f = new File("./res/users/" + exportUser.getUsername() + ".ser");
 		// if user already exists
 		if (f.exists()) {
 			// throw exception
