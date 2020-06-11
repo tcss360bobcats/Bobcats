@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -13,10 +12,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTree;
-import javax.swing.SwingUtilities;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 import model.Item;
@@ -52,8 +49,7 @@ public class FilePanel extends JPanel {
 		createNodes(theRooms, top);
 		JTree jt = new JTree(top);
 		jt.setRootVisible(false);
-		setUpListener(jt);
-		addRightClickListener(jt);
+		addClickListener(jt);
 		return jt;
 	}
 	
@@ -68,37 +64,35 @@ public class FilePanel extends JPanel {
 		}
 	}
 
-	private static void setUpListener(JTree theTree) {
-		theTree.addTreeSelectionListener(new TreeSelectionListener() {
-			public void valueChanged(TreeSelectionEvent e) {
-				DefaultMutableTreeNode node = (DefaultMutableTreeNode) theTree.getLastSelectedPathComponent();
-				
-				Object nodeObject = node.getUserObject();
-				if(node.isLeaf()) {
-					Item item = (Item) nodeObject;
-					myDisplay.setDisplay(item.getFile());
-				}
-			}
-		});
-			
-	}
-	
+
 	/**
 	 * Creates a popup menu when an item on the JTree is rightclicked 
 	 * @author Anthony Nguyen
 	 * @param theTree
 	 */
-	private static void addRightClickListener(JTree theTree) {
+	private static void addClickListener(JTree theTree) {
 		
 		TreePopup treePopup = new TreePopup(theTree);
 	    theTree.addMouseListener(new MouseAdapter() {
 	    	public void mouseReleased(MouseEvent e) {
+	    		//if the tree is right click then dispaly the option to delete nodes 
 	    		if(e.isPopupTrigger()) {
 	    	        TreePath selPath = theTree.getPathForLocation(e.getX(), e.getY());
 	    			theTree.setSelectionPath(selPath);
 	    			treePopup.show(e.getComponent(), e.getX(), e.getY());
 	                
-	             }
+	            }
+	    		//if the tree is left clicked then display the contents on the main display
+	    		//@author Tyke 
+	    		if(e.getButton() == MouseEvent.BUTTON1) {
+					DefaultMutableTreeNode node = (DefaultMutableTreeNode) theTree.getLastSelectedPathComponent();
+					
+					Object nodeObject = node.getUserObject();
+					if(node.isLeaf()) {
+						Item item = (Item) nodeObject;
+						myDisplay.setDisplay(item.getFile());
+					}
+	    		}
 	    	}
 	    });	
 	}
@@ -115,14 +109,32 @@ class TreePopup extends JPopupMenu {
 	
 	public TreePopup(JTree theTree) {
 		myTree = theTree;
+		//creates a popup menu with an option to delete an item
 		JMenuItem delete = new JMenuItem("Delete");
 		
 		delete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				//deletes the node from the tree and the object associate with the node from the app
 				System.out.println("DELETE");
+<<<<<<< HEAD
 				//TODO Remove the item 
 				
+=======
+                DefaultTreeModel model = (DefaultTreeModel) theTree.getModel();
+                TreePath[] paths = theTree.getSelectionPaths();
+                if (paths != null) {
+                    for (TreePath path : paths) {
+                        DefaultMutableTreeNode node = (DefaultMutableTreeNode) 
+                            path.getLastPathComponent();
+                        if (node.getParent() != null) {
+                        	Item tempItem = (Item) node.getUserObject();
+                        	//TODO REMOVE ITEM FUNCTION 
+                            model.removeNodeFromParent(node);
+                        }
+                    }
+                }
+>>>>>>> remove_item
 			}	
 		});
 		add(delete);
