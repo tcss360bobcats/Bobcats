@@ -41,9 +41,6 @@ public class DisplayPanel extends JPanel {
     public DisplayPanel() {
     	// This Line is for Testing and Demo Purposes
     	this.filePath = "./res/pdf/c4611_sample_explain.pdf";
-    	//System.out.println("This is " + filePath);
-    			//"pdf/c4611_sample_explain.pdf";
-    	// This Line is for Testing and Demo Purposes
     	
         myViewerComponentPanel = myFactory.buildViewerPanel();
         myViewerComponentPanel.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
