@@ -39,6 +39,7 @@ public class FilePanel extends JPanel {
 	/**
 	 * Contains the file system. 
 	 * @author Anthony
+	 * @author Tyke Sykes
 	 */
 	public FilePanel(ArrayList<Room> theRooms, DisplayPanel theDisplay) {
 		setVisible(true);
@@ -46,6 +47,14 @@ public class FilePanel extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
+	/**
+	 * Creates the JTree for file display.
+	 * @author Tyke Sykes
+	 * 
+	 * @param theRooms is the ArrayList of Rooms.
+	 * @param theDisplay is the DisplayPanel for file display.
+	 * @return returns a populated JTree.
+	 */
 	public static JTree createTree(ArrayList<Room> theRooms, DisplayPanel theDisplay) {
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode();
 		myDisplay = theDisplay;
@@ -57,6 +66,13 @@ public class FilePanel extends JPanel {
 		return jt;
 	}
 	
+	/**
+	 * Creates nodes for the JTree using the ArrayList of Rooms.
+	 * @author Tyke Sykes
+	 * 
+	 * @param theRooms
+	 * @param theTop
+	 */
 	private static void createNodes(ArrayList<Room> theRooms, DefaultMutableTreeNode theTop) {
 		for(Room r : theRooms) {
 			DefaultMutableTreeNode node = new DefaultMutableTreeNode(r);
@@ -98,7 +114,6 @@ public class FilePanel extends JPanel {
 						try {
 							myDisplay.setDisplay(item.getFile().toString());
 						} catch (Exception e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 

@@ -8,18 +8,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * An Item object holds a name, a File, and tags. There can be no duplicate tags.
+ * An Item object holds a name, a File, and tags. There can be no duplicate
+ * tags.
  * 
  * @author Tyke Sykes
  * @version 5/08/2020
  */
 public class Item implements Serializable {
 	/**
-	 * 
+	 * Generated serial ID.
 	 */
 	private static final long serialVersionUID = -1714051650257532647L;
-
-
 
 	/** The name of the Item. */
 	private String myName;
@@ -50,7 +49,7 @@ public class Item implements Serializable {
 	public Item(String theName, File theFile, Set<String> theTags) {
 		myName = theName;
 		myFile = theFile;
-		myTags = theTags; 
+		myTags = theTags;
 	}
 
 	/**
@@ -84,7 +83,7 @@ public class Item implements Serializable {
 	 * Returns the File associated with the Item.
 	 * 
 	 * @return the File associated with the Item.
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public File getFile() {
 		return myFile;
@@ -105,7 +104,8 @@ public class Item implements Serializable {
 	 * @param theTags is the Set of tags to add to the Item.
 	 */
 	public void addTags(Set<String> theTags) {
-		for (String tag : theTags) myTags.add(tag.toLowerCase());
+		for (String tag : theTags)
+			myTags.add(tag.toLowerCase());
 	}
 
 	/**
@@ -141,7 +141,13 @@ public class Item implements Serializable {
 	public Set<String> getTags() {
 		return myTags;
 	}
-	
+
+	/**
+	 * Overridden method for printing.
+	 * 
+	 * @author Darryl
+	 * @return the name of the Item.
+	 */
 	@Override
 	public String toString() {
 		return myName;
