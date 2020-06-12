@@ -120,7 +120,7 @@ public class RoomTest {
 	 * Here the room should have 
 	 * myTestItem1 and myTestItem2.
 	 * 
-	 * @author Darryl James
+	 * @author Tyke
 	 */
 	@Test 
 	public void RoomAddItemsTest() {
@@ -136,7 +136,7 @@ public class RoomTest {
 	 * Here the room should only
 	 * have myTestItem1.
 	 * 
-	 * @author Darryl James
+	 * @author Tyke
 	 */
 	@Test 
 	public void RoomRemoveItemTest() {
@@ -153,7 +153,7 @@ public class RoomTest {
 	 * Here the room should be empty
 	 * when we assert.
 	 * 
-	 * @author Darryl James
+	 * @author Anthony
 	 */
 	@Test
 	public void RoomRemoveItemsTest() {

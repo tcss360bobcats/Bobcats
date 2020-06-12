@@ -22,7 +22,7 @@ public class AboutTest {
 	/**
 	 * This test makes sure the versions are 
 	 * only updated when About.getVersion is called.
-	 * 
+	 *
 	 */
 	@Test 
 	public void getVersionTest() { 
