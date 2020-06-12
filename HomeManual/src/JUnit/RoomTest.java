@@ -2,6 +2,7 @@ package JUnit;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -33,8 +34,8 @@ public class RoomTest {
 		myRoom = new Room("TestRoom");
 		myItems = new ArrayList<Item>();
 		
-		myTestItem1 = new Item("AItem", "./res/pdf/BioniclesManual.pdf");
-		myTestItem2 = new Item("BItem", "./respdf/Bobcats-Deliverable1.pdf");
+		myTestItem1 = new Item("AItem", new File("./res/pdf/BioniclesManual.pdf"));
+		myTestItem2 = new Item("BItem", new File("./res/pdf/Bobcats-Deliverable1.pdf"));
 		
 		myItems.add(myTestItem1);
 		myRoom.addItem(myTestItem1);
@@ -120,7 +121,7 @@ public class RoomTest {
 	 * Here the room should have 
 	 * myTestItem1 and myTestItem2.
 	 * 
-	 * @author Darryl James
+	 * @author Tyke
 	 */
 	@Test 
 	public void RoomAddItemsTest() {
@@ -136,7 +137,7 @@ public class RoomTest {
 	 * Here the room should only
 	 * have myTestItem1.
 	 * 
-	 * @author Darryl James
+	 * @author Tyke
 	 */
 	@Test 
 	public void RoomRemoveItemTest() {
@@ -153,7 +154,7 @@ public class RoomTest {
 	 * Here the room should be empty
 	 * when we assert.
 	 * 
-	 * @author Darryl James
+	 * @author Anthony
 	 */
 	@Test
 	public void RoomRemoveItemsTest() {

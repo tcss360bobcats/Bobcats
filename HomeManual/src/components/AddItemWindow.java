@@ -1,10 +1,15 @@
 
-
 package components;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -13,7 +18,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+
+import model.Item;
+import model.Room;
+import utilities.FileSystem;
+import view.ManualGUI;
 
 /**
  * The AddItemWindow class displays the window
@@ -87,30 +100,50 @@ public class AddItemWindow extends JFrame {
 			String[] someTags = tags.getText().split(" ");
 			String aFileName = file.getSelectedFile().getAbsolutePath();
 			String aRoomName = room.getText();
-
+			
 			try (FileWriter fw = new FileWriter("./res/files/testItemFile.txt", true); 
 				 BufferedWriter bw = new BufferedWriter(fw);
 				 PrintWriter out = new PrintWriter(bw)){
 				out.print("\n" + aName + ", " + aFileName + ", ");
-				
-				if (aRoomName.equals("")) {
-					// Something with the rooms
-					// and where to store the new item
+				for (String t : someTags) {
+					out.print(t + " ");
 				}
-				
-				for (String t : someTags) {out.print(t + " ");}
 				
 				out.close();
 				fw.close();
 				bw.close();
-				// Closes the window when the button is pressed
 				this.dispose();
-				JOptionPane.showMessageDialog(this, "File Added Successfully");
-
+				JOptionPane.showMessageDialog(this, "File Successfully added");
+				
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(this, "The File was not added Successfully");
+				JOptionPane.showMessageDialog(this, "The file was not added");
 				e.printStackTrace();
 			}
+//				File inFile = new File(aFileName);
+//				Item item = new Item(aName, inFile);
+//				Iterator<Room> i = FileSystem.myRooms.iterator();
+//				while(i.hasNext() ) {
+//					Room room = i.next();
+//					if(room.getName().equals("test")) {
+//						room.addItem(item);
+//						FileSystem.write(room);
+//					}
+//					
+//			String aRoomName = room.getText();
+//				
+//				for (String t : someTags) {out.print(t + " ");}
+//				
+//				out.close();
+//				fw.close();
+//				bw.close();
+//				// Closes the window when the button is pressed
+//				this.dispose();
+//				JOptionPane.showMessageDialog(this, "File Added Successfully");
+//
+//			} catch (Exception e) {
+//				JOptionPane.showMessageDialog(this, "The File was not added Successfully");
+//				e.printStackTrace();
+//			}
 		});		
 		
 		window.add(namePanel);

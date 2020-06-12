@@ -33,6 +33,8 @@ public class FilePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private static DisplayPanel myDisplay;
+	
+	public static JTree myTree;
 
 	/**
 	 * Contains the file system. 
@@ -51,6 +53,7 @@ public class FilePanel extends JPanel {
 		JTree jt = new JTree(top);
 		jt.setRootVisible(false);
 		addClickListener(jt);
+		myTree = jt;
 		return jt;
 	}
 	
@@ -92,8 +95,13 @@ public class FilePanel extends JPanel {
 					Object nodeObject = node.getUserObject();
 					if(node.isLeaf()) {
 						Item item = (Item) nodeObject;
-						myDisplay.setDisplay(item.getFile());
-						
+						try {
+							myDisplay.setDisplay(item.getFile().toString());
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
 					}
 	    		}
 	    	}

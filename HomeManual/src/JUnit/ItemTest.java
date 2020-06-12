@@ -2,6 +2,7 @@ package JUnit;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 //import java.net.URL;
 import java.util.HashSet;
 
@@ -23,9 +24,9 @@ public class ItemTest {
 	
 	@Before
 	public void start() {
-		myItem1 = new Item("AItem", "./red/pdf/BioniclesManual.pdf");
-		myItem2 = new Item("BItem", "./res/pdf/Bobcats-Deliverable1.pdf");
-		myItem3 = new Item("DItem", "./res/pdf/Bobcats-Deliverable1.pdf");
+		myItem1 = new Item("AItem", new File("./red/pdf/BioniclesManual.pdf"));
+		myItem2 = new Item("BItem", new File("./res/pdf/Bobcats-Deliverable1.pdf"));
+		myItem3 = new Item("DItem", new File("./res/pdf/Bobcats-Deliverable1.pdf"));
 		
 		myItem1.addTag("a");
 		myItem2.addTag("b");
@@ -39,6 +40,7 @@ public class ItemTest {
 	 * This is a test method for the 
 	 * search and display functionality
 	 * 
+	 * @author Tyke Sykes
 	 * @return A List of test items to search for
 	 */
 	@Test
@@ -88,7 +90,7 @@ public class ItemTest {
 	 * Here the item should have tags
 	 * "a", "b", and "boba" when we assert.
 	 * 
-	 * @author Darryl James
+	 * @author Tyke Sykes
 	 */
 	@Test
 	public void itemAddTags() {
@@ -127,7 +129,7 @@ public class ItemTest {
 	 * "Really Long Name Here"
 	 * when we assert.
 	 * 
-	 * @author Darryl James
+	 * @author Anthony Nguyen
 	 */
 	@Test
 	public void itemSetNameTest() {
@@ -152,7 +154,7 @@ public class ItemTest {
 	 * on tag 'a' on the
 	 * final assert.
 	 * 
-	 * @author Darryl James
+	 * @author Anthony Nguyen
 	 */
 	@Test
 	public void itemRemoveTagTest() {
@@ -217,8 +219,8 @@ public class ItemTest {
 	 */
 	@Test
 	public void itemFileSetTest() {
-		String temp = myItem3.getFile();
-		myItem3.setFile("./res/pdf/BioniclesManual.pdf");
+		File temp = myItem3.getFile();
+		myItem3.setFile(new File("./res/pdf/BioniclesManual.pdf"));
 		assertEquals(myItem3.getFile(), myItem3.getFile());
 		myItem3.setFile(temp);
 	}
