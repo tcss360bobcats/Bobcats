@@ -7,3 +7,4 @@ Bionicle, res/pdf/BioniclesManual.pdf, Bionicle Toy zz
 Deliverable, res/pdf/Bobcats-Deliverable1.pdf, Deliverable Bobcats CheckIn zz
 Room, D:\Downloads\Books&Resources\Books\CPH.pdf, A Tag 
 Another, D:\Downloads\Books&Resources\Books\Cormen_Algorithms_3rd.pdf, Room 
+qwer, C:\Users\tikes\OneDrive\School\UW Tacoma\19-20\3_Spring\TMATH 300\John P D'Angelo_ Douglas Brent West - Mathematical thinking _ problem-solving and proofs-Prentice Hall  (2000).pdf, 333 
