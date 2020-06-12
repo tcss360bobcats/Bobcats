@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class ManualGUI extends JFrame {
 				// The tags/keywords associated with the item
 				String[] tags = temp[2].split(" ");
 				
-				Item A = new Item(name, file);
+				Item A = new Item(name, new File(file));
 				for (String tag : tags) A.addTag(tag);
 				allItems.add(A);
 				

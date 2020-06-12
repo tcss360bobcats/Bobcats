@@ -190,7 +190,7 @@ public class SearchPanel extends JPanel{
 		butt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				myDisplayPanel.setDisplay(theItem.getFile());
+				myDisplayPanel.setDisplay(theItem.getFile().toString());
 			}
 		});
 		
