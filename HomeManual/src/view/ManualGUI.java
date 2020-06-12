@@ -69,9 +69,8 @@ public class ManualGUI extends JFrame {
 				String[] temp = line.split(", ");
 				// The name of the item
 				String name = temp[0];
-				String file = "";
 				// The File location for the item
-				// System.out.println(temp[1].substring(0,3));
+				String file = "";
 				if (temp[1].substring(0, 3).equals("res")) {
 					file += "./";
 				} 

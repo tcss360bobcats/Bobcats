@@ -1,5 +1,6 @@
 package utilities;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
@@ -52,8 +53,14 @@ public class About {
 	 * @return current version of project
 	 */
 	public static String getVersion() {
-		Scanner file = new Scanner("./res/files/version.txt");
+		Scanner file = null;
+		try {
+			file = new Scanner(new File("./res/files/version.txt"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		String version = file.nextLine();
+		System.out.println(version);
 		file.close();
 		return version;
 	}

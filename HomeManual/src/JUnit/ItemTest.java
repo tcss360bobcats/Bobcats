@@ -15,7 +15,7 @@ import model.Item;
  * test for the important
  * methods within it.
  * 
- * @author Darryl James
+ * @author Darryl James, Tyke Sykes, Anthony Nguyen
  */
 public class ItemTest {
 	
