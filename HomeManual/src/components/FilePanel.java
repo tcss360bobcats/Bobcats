@@ -96,12 +96,17 @@ public class FilePanel extends JPanel {
 					Object nodeObject = node.getUserObject();
 					if(node.isLeaf()) {
 						Item item = (Item) nodeObject;
+<<<<<<< HEAD
 						try {
 							myDisplay.setDisplay(item.getFile().toURL());
 						} catch (MalformedURLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+=======
+						myDisplay.setDisplay(item.getFile());
+						
+>>>>>>> c2f970cd74ac77e1a3c3f1394c177ee0829c3824
 					}
 	    		}
 	    	}

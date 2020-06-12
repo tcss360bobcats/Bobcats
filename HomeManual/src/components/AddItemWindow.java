@@ -78,13 +78,12 @@ public class AddItemWindow extends JFrame {
 		
 		JPanel filePanel = new JPanel();
 		JFileChooser file = new JFileChooser();
-//		JLabel nameOfFile = new JLabel("File Path: ");
-//		filePanel.add(nameOfFile);
+
 		filePanel.add(file);
 		
 		JButton submit = new JButton("Add Item");
 		submit.addActionListener(theEvent -> {
-			// Something goes here
+
 			String aName = name.getText();
 			String[] someTags = tags.getText().split(" ");
 			String aFileName = file.getSelectedFile().getAbsolutePath();
@@ -119,16 +118,20 @@ public class AddItemWindow extends JFrame {
 						room.addItem(item);
 						FileSystem.write(room);
 					}
+
+			try (FileWriter fw = new FileWriter("./res/files/testItemFile.txt", true); 
+				 BufferedWriter bw = new BufferedWriter(fw);
+				 PrintWriter out = new PrintWriter(bw)){
+				out.print("\n" + aName + ", " + aFileName + ", ");
+				for (String t : someTags) {
+					out.print(t + " ");
 				}
-				FileSystem.initialize();
-				
 		});		
 		
 		window.add(namePanel);
 		window.add(tagsPanel);
 		window.add(filePanel);
 		window.add(submit);
-		
 		
 		return window;
 	}

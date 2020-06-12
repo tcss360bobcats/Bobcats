@@ -47,7 +47,9 @@ public class SettingsWindow extends JFrame {
 		 * @author Andrew Lim
 		 */		
 		try {
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./src/files/profile.ser"));
+			//ObjectInputStream ois = new ObjectInputStream(this.getClass().getResource("/files/testItemFile.txt").openStream());
+
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./res/files/profile.ser"));
 	        user = (User) ois.readObject();
 	        ois.close();
 		} catch (Exception e) {
@@ -131,7 +133,7 @@ public class SettingsWindow extends JFrame {
 				try {
 					s.importSettings(usernameImport.getText());
 					try {
-						ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./src/files/profile.ser"));
+						ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./res/files/profile.ser"));
 				        user = (User) ois.readObject();
 				        usernameText.setText(user.getUsername());
 				        emailText.setText(user.getEmail());

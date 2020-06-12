@@ -4,12 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import javax.swing.*;
 
@@ -42,9 +40,6 @@ public class ManualGUI extends JFrame {
     /** The Title of the Application. */
 	private final static String TITLE = "Homeowner's Manual";
 	
-	public static DisplayPanel myDisplayPanel;
-	
-	public static JScrollPane myScrollPane;
 
 	/**
 	 * The GUI JFrame.
@@ -66,7 +61,7 @@ public class ManualGUI extends JFrame {
 	 */
 	private ArrayList<Item> getItems() {
 		ArrayList<Item> allItems = new ArrayList<Item>();
-		try(BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResource("/files/testItemFile.txt").openStream()))) {
+		try(BufferedReader br = new BufferedReader(new FileReader("./res/files/testItemFile.txt"))) {
 			String line = br.readLine();
 			
 			while(line != null) {
@@ -75,13 +70,12 @@ public class ManualGUI extends JFrame {
 				String name = temp[0];
 				
 				// The File location for the item
-				String file = "/" + temp[1];
+				String file = "./" + temp[1];
 				
 				// The tags/keywords associated with the item
 				String[] tags = temp[2].split(" ");
 				
-				//System.out.println(this.getClass().getResource(file).getFile().toString());
-				Item A = new Item(name, new File((this.getClass().getResource(file)).getPath()));
+				Item A = new Item(name, file);
 				for (String tag : tags) A.addTag(tag);
 				allItems.add(A);
 				
@@ -95,7 +89,7 @@ public class ManualGUI extends JFrame {
 			e.printStackTrace();
 		} 
 		
-		return allItems;
+		return allItems;	
 	}
 	
 	/**
@@ -104,20 +98,18 @@ public class ManualGUI extends JFrame {
 	 */
 	private void initGUI() {
 		FileSystem.initialize();
-		ArrayList<Room> allRooms = FileSystem.myRooms;
 		// Generate the list of items from a file
-//		ArrayList<Item> allItems = getItems(); 
+		ArrayList<Item> allItems = getItems(); 
 		
 		setLayout(new BorderLayout());
 		
 		// Main display for the manual
 		final DisplayPanel displayPanel = new DisplayPanel();
-		myDisplayPanel = displayPanel;
 		
-//		Room room = new Room("test", allItems);
+		Room room = new Room("test", allItems);
 		ArrayList<Room> roomList = new ArrayList<Room>();
-//		roomList.add(room);
-//		FileSystem.write(room);
+		roomList.add(room);
+		FileSystem.write(room);
 
 		final FilePanel filePanel = new FilePanel(roomList, displayPanel);
 		filePanel.setLayout(new BoxLayout(filePanel, WIDTH));
@@ -126,8 +118,7 @@ public class ManualGUI extends JFrame {
 		itemPanel.setLayout(new BoxLayout(itemPanel, WIDTH));
 		
 		// Makes the Scroll Bar appear and resizes its width
-		JScrollPane scrollPane = new JScrollPane(FilePanel.createTree(allRooms, displayPanel));	
-		myScrollPane = scrollPane;
+		final JScrollPane scrollPane = new JScrollPane(FilePanel.createTree(roomList, displayPanel));	
 		final JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
         scrollBar.setPreferredSize(new Dimension(12, 12));
         
@@ -139,7 +130,7 @@ public class ManualGUI extends JFrame {
         // The search panel to enter tags/keywords
 		final SearchPanel searchPanel = new SearchPanel(itemPanel, displayPanel);
 		searchPanel.setSize(this.getWidth() / 3 , this.getHeight() / 4);
-		searchPanel.attachList(allRooms.get(0).getItems());
+		searchPanel.attachList(allItems);
 					
 		// Left file display system
 		final JPanel westPanel = new JPanel(new BorderLayout());

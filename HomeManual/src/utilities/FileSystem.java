@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -26,23 +25,19 @@ public class FileSystem implements Serializable {
 	 */
 	private static final long serialVersionUID = -8801974321963152918L;
 
-	public static ArrayList<Room> myRooms;
+	private static HashSet<Room> myRooms;
 	
-	public static ArrayList<Room> initialize() {
-		ArrayList<Room> rooms = new ArrayList<Room>();
+	public static HashSet<Room> initialize() {
+		HashSet<Room> rooms = new HashSet<Room>();
 		myRooms = rooms;
 		
 		ObjectInputStream ois = null;
 		FileInputStream fin = null;
 		try {
-			File file = new File(FOLDER);
-			String[] folders = file.list();
-			for(String s : folders) {
-				fin = new FileInputStream(FOLDER + s + "/room_" + s + ".ser");
-				ois = new ObjectInputStream(fin);
-				Room room = (Room) ois.readObject();
-				myRooms.add(room);
-			}
+			fin = new FileInputStream("./rooms/test/room_test.ser");
+			ois = new ObjectInputStream(fin);
+			Room test = (Room) ois.readObject();
+			myRooms.add(test);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
