@@ -16,7 +16,7 @@ import model.Room;
  * tests for the important 
  * methods within the it.
  * 
- * @author Darryl James
+ * @author Darryl James, Tyke Sykes, Anthony Nguyen
  */
 public class RoomTest {
 
@@ -121,7 +121,7 @@ public class RoomTest {
 	 * Here the room should have 
 	 * myTestItem1 and myTestItem2.
 	 * 
-	 * @author Tyke
+	 * @author Tyke Sykes
 	 */
 	@Test 
 	public void RoomAddItemsTest() {
@@ -137,7 +137,7 @@ public class RoomTest {
 	 * Here the room should only
 	 * have myTestItem1.
 	 * 
-	 * @author Tyke
+	 * @author Tyke Sykes
 	 */
 	@Test 
 	public void RoomRemoveItemTest() {
@@ -154,7 +154,7 @@ public class RoomTest {
 	 * Here the room should be empty
 	 * when we assert.
 	 * 
-	 * @author Anthony
+	 * @author Anthony Nguyen
 	 */
 	@Test
 	public void RoomRemoveItemsTest() {

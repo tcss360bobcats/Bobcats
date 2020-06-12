@@ -14,28 +14,27 @@ import utilities.About;
 import view.ManualGUI;
 
 /**
- * Creates a menu bar 
+ * Creates a menu bar
+ * 
  * @author Anthony Nguyen
  * @author Tyke Sykes
  */
-public class MenuBar extends JMenuBar{
-	
-	
+public class MenuBar extends JMenuBar {
+
 	/** default serial id */
 	private static final long serialVersionUID = 1L;
-	
-	/** main GUI*/
-	private ManualGUI myGUI; 
-	
+
+	/** main GUI */
+	private ManualGUI myGUI;
+
 	/** The menu that holds the edit options regarding items. */
-	private JMenu myEditMenu; 
-	
-	
-	
+	private JMenu myEditMenu;
+
 	/**
 	 * Creates a menu bar for the GUI.
+	 * 
 	 * @author Anthony
-	 * @param theGUI the main display 
+	 * @param theGUI the main display
 	 */
 	public MenuBar(final ManualGUI theGUI) {
 		myGUI = theGUI;
@@ -44,9 +43,10 @@ public class MenuBar extends JMenuBar{
 		add(myEditMenu);
 		add(createUtility());
 	}
-	
+
 	/**
 	 * Creates the File menu.
+	 * 
 	 * @author Anthony
 	 * @return File menu.
 	 */
@@ -56,12 +56,13 @@ public class MenuBar extends JMenuBar{
 		final JMenuItem settings = new JMenuItem("Settings");
 		settings.addActionListener(theEvent -> new SettingsWindow().setTitle("Settings"));
 		file.add(settings);
-			
+
 		return file;
 	}
-	
+
 	/**
 	 * Creates the Edit menu.
+	 * 
 	 * @author Anthony
 	 * @return the Edit menu.
 	 */
@@ -73,28 +74,29 @@ public class MenuBar extends JMenuBar{
 		addItem.addActionListener(theEvent -> new AddItemWindow());
 		final JMenuItem addRoom = new JMenuItem("Add Room");
 		addRoom.addActionListener(theEvent -> new AddRoomWindow());
-		
+
 		edit.add(addItem);
 		edit.add(addRoom);
-		
+
 		return edit;
 	}
-	
+
 	/**
-	 * Creates the Help menu. Contains the About menu item
-	 * that displays the authors and version of the app.
+	 * Creates the Help menu. Contains the About menu item that displays the authors
+	 * and version of the app.
+	 * 
 	 * @author Tyke
 	 * @author Anthony
 	 * @return the Help menu.
 	 */
 	private JMenu createUtility() {
 		final JMenu utility = new JMenu("Utility");
-		
+
 		utility.add(createAboutButton());
 		utility.add(createLoginButton());
 		return utility;
 	}
-	
+
 	private JMenuItem createAboutButton() {
 		final JMenuItem about = new JMenuItem("About...");
 		about.addActionListener(new ActionListener() {
@@ -104,7 +106,7 @@ public class MenuBar extends JMenuBar{
 					String about = "Version: " + About.getVersion();
 					about += "\nAuthors: " + Arrays.toString(About.getAuthors()).substring(1,
 							Arrays.toString(About.getAuthors()).length() - 1);
-					
+
 					JOptionPane.showMessageDialog(myGUI, about);
 				} catch (HeadlessException theException) {
 					JOptionPane.showMessageDialog(myGUI, "Cannot find version file.");
@@ -114,37 +116,38 @@ public class MenuBar extends JMenuBar{
 		});
 		return about;
 	}
+
 	/**
 	 * Button that allows the user to log in
+	 * 
 	 * @author Anthony Nguyen
 	 * @return login button
 	 */
 	private JMenuItem createLoginButton() {
-		//Lets the admin login with the password 1234
+		// Lets the admin login with the password 1234
 		final JMenuItem login = new JMenuItem("Admin Log In...");
 		login.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent theEvent) {
-				
-				//popup window that takes in user input for the password
+
+				// popup window that takes in user input for the password
 				String password = JOptionPane.showInputDialog("Enter Admin Password: ");
 				try {
-					if(password.equals("1234")) {
+					if (password.equals("1234")) {
 						myEditMenu.setEnabled(true);
 						JOptionPane.showMessageDialog(myGUI, "Logged in successfully!");
 					} else {
 						JOptionPane.showMessageDialog(myGUI, "Incorrect Password.");
 					}
-				//catch error when the user doesn't enter a password 
+					// catch error when the user doesn't enter a password
 				} catch (NullPointerException theException) {
 					password = "no password";
 				}
 
-			}			
+			}
 		});
-		return login;	
+		return login;
 	}
-	
-	
+
 }
