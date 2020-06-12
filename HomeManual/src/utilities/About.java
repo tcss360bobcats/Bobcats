@@ -36,7 +36,7 @@ public class About {
 		PrintWriter writer = null;
 		try {
 			//"files/version.txt"
-			writer = new PrintWriter("src/files/version.txt");
+			writer = new PrintWriter("./res/files/version.txt");
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class About {
 	 * @return current version of project
 	 */
 	public static String getVersion() {
-		Scanner file = new Scanner(About.class.getResourceAsStream("/files/version.txt"));
+		Scanner file = new Scanner("./res/files/version.txt");
 		String version = file.nextLine();
 		file.close();
 		return version;
