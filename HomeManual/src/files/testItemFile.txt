@@ -6,4 +6,3 @@ Keyword, pdf/c4611_sample_explain.pdf, Keyword Sample zz
 Bionicle, pdf/BioniclesManual.pdf, Bionicle Toy zz
 Deliverable, pdf/Bobcats-Deliverable1.pdf, Deliverable Bobcats CheckIn zz
 CheckIn, pdf/checkin-3.pdf, Deliverable CheckIn Check zz
-yes, D:\Downloads\Books&Resources\Books\CPH.pdf, yes no 

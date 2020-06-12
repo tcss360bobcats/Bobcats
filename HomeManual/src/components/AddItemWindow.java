@@ -3,9 +3,14 @@
 package components;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -13,7 +18,15 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+
+import model.Item;
+import model.Room;
+import utilities.FileSystem;
+import view.ManualGUI;
 
 /**
  * The AddItemWindow class displays the window
@@ -75,29 +88,40 @@ public class AddItemWindow extends JFrame {
 			String aName = name.getText();
 			String[] someTags = tags.getText().split(" ");
 			String aFileName = file.getSelectedFile().getAbsolutePath();
-			// FileWriter fw = new FileWriter(this.getClass().getResource("/files/testItemFile.txt").getFile().toString(), true)
-			try (FileWriter fw = new FileWriter("./src/files/testItemFile.txt", true); 
-				 BufferedWriter bw = new BufferedWriter(fw);
-				 PrintWriter out = new PrintWriter(bw)){
-				out.print("\n" + aName + ", " + aFileName + ", ");
-				for (String t : someTags) {
-					out.print(t + " ");
+//			// FileWriter fw = new FileWriter(this.getClass().getResource("/files/testItemFile.txt").getFile().toString(), true)
+//			try (FileWriter fw = new FileWriter("./src/files/testItemFile.txt", true); 
+//				 BufferedWriter bw = new BufferedWriter(fw);
+//				 PrintWriter out = new PrintWriter(bw)){
+//				out.print("\n" + aName + ", " + aFileName + ", ");
+//				for (String t : someTags) {
+//					out.print(t + " ");
+//				}
+//				
+//				out.close();
+//				fw.close();
+//				bw.close();
+//				System.out.println("Success");
+//				System.out.println(aName);
+//				System.out.println(aFileName);
+//				System.out.println(Arrays.toString(someTags));
+//				
+//				System.out.println(this.getClass().getResource("/files/testItemFile.txt").getFile().toString());
+//			} catch (Exception e) {
+//				System.out.println("Something went wrong with the add item process");
+//				e.printStackTrace();
+//			}
+				File inFile = new File(aFileName);
+				Item item = new Item(aName, inFile);
+				Iterator<Room> i = FileSystem.myRooms.iterator();
+				while(i.hasNext() ) {
+					Room room = i.next();
+					if(room.getName().equals("test")) {
+						room.addItem(item);
+						FileSystem.write(room);
+					}
 				}
+				FileSystem.initialize();
 				
-				out.close();
-				fw.close();
-				bw.close();
-				System.out.println("Success");
-				System.out.println(aName);
-				System.out.println(aFileName);
-				System.out.println(Arrays.toString(someTags));
-				
-				System.out.println(this.getClass().getResource("/files/testItemFile.txt").getFile().toString());
-			} catch (Exception e) {
-				System.out.println("Something went wrong with the add item process");
-				e.printStackTrace();
-			}
-			
 		});		
 		
 		window.add(namePanel);

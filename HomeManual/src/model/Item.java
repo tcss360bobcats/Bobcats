@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
@@ -18,11 +19,13 @@ public class Item implements Serializable {
 	 */
 	private static final long serialVersionUID = -1714051650257532647L;
 
+
+
 	/** The name of the Item. */
 	private String myName;
 
 	/** The File object associated with the Item. */
-	private URL myFile;
+	private File myFile;
 
 	/** The Set of tags associated with the Item. */
 	private Set<String> myTags;
@@ -33,7 +36,7 @@ public class Item implements Serializable {
 	 * @param theName is the name of the Item.
 	 * @param theFile is the File to be associated with the Item.
 	 */
-	public Item(String theName, URL theFile) {
+	public Item(String theName, File theFile) {
 		this(theName, theFile, new HashSet<String>());
 	}
 
@@ -44,7 +47,7 @@ public class Item implements Serializable {
 	 * @param theFile is the File to be associated with the Item.
 	 * @param theTags is a Set of tags to be associated with the Item.
 	 */
-	public Item(String theName, URL theFile, Set<String> theTags) {
+	public Item(String theName, File theFile, Set<String> theTags) {
 		myName = theName;
 		myFile = theFile;
 		myTags = theTags; 
@@ -73,7 +76,7 @@ public class Item implements Serializable {
 	 * 
 	 * @param theFile is the File to be associated with the Item.
 	 */
-	public void setFile(URL theFile) {
+	public void setFile(File theFile) {
 		myFile = theFile;
 	}
 
@@ -83,7 +86,7 @@ public class Item implements Serializable {
 	 * @return the File associated with the Item.
 	 * @throws IOException 
 	 */
-	public URL getFile() {
+	public File getFile() {
 		return myFile;
 	}
 
