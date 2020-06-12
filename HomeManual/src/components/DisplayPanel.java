@@ -3,8 +3,6 @@ package components;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-//import java.io.File;
-//import java.net.URL;
 
 import javax.swing.JPanel;
 import org.icepdf.ri.common.SwingController;
