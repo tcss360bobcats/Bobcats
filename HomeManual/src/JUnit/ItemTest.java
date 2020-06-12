@@ -39,6 +39,7 @@ public class ItemTest {
 	 * This is a test method for the 
 	 * search and display functionality
 	 * 
+	 * @author Tyke Sykes
 	 * @return A List of test items to search for
 	 */
 	@Test
@@ -88,7 +89,7 @@ public class ItemTest {
 	 * Here the item should have tags
 	 * "a", "b", and "boba" when we assert.
 	 * 
-	 * @author Darryl James
+	 * @author Tyke Sykes
 	 */
 	@Test
 	public void itemAddTags() {
@@ -127,7 +128,7 @@ public class ItemTest {
 	 * "Really Long Name Here"
 	 * when we assert.
 	 * 
-	 * @author Darryl James
+	 * @author Anthony Nguyen
 	 */
 	@Test
 	public void itemSetNameTest() {
@@ -152,7 +153,7 @@ public class ItemTest {
 	 * on tag 'a' on the
 	 * final assert.
 	 * 
-	 * @author Darryl James
+	 * @author Anthony Nguyen
 	 */
 	@Test
 	public void itemRemoveTagTest() {

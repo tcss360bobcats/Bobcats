@@ -58,10 +58,8 @@ public class AddRoomWindow extends JFrame {
 		window.add(namePanel);
 		window.add(submit);
 		
-		
 		return window;
 	}
 	
-
 }
 	
