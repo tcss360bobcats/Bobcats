@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -33,6 +34,8 @@ public class FilePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private static DisplayPanel myDisplay;
+	
+	public static JTree myTree;
 
 	/**
 	 * Contains the file system. 
@@ -51,6 +54,7 @@ public class FilePanel extends JPanel {
 		JTree jt = new JTree(top);
 		jt.setRootVisible(false);
 		addClickListener(jt);
+		myTree = jt;
 		return jt;
 	}
 	
@@ -92,8 +96,17 @@ public class FilePanel extends JPanel {
 					Object nodeObject = node.getUserObject();
 					if(node.isLeaf()) {
 						Item item = (Item) nodeObject;
+<<<<<<< HEAD
+						try {
+							myDisplay.setDisplay(item.getFile().toURL());
+						} catch (MalformedURLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+=======
 						myDisplay.setDisplay(item.getFile());
 						
+>>>>>>> c2f970cd74ac77e1a3c3f1394c177ee0829c3824
 					}
 	    		}
 	    	}
