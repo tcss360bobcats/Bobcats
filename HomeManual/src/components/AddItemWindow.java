@@ -82,10 +82,12 @@ public class AddItemWindow extends JFrame {
 		// Add The submit button for the user
 		JButton submit = new JButton("Add Item");
 		submit.addActionListener(theEvent -> {
+
 			String aName = name.getText();
 			String[] someTags = tags.getText().split(" ");
 			String aFileName = file.getSelectedFile().getAbsolutePath();
 			String aRoomName = room.getText();
+
 			try (FileWriter fw = new FileWriter("./res/files/testItemFile.txt", true); 
 				 BufferedWriter bw = new BufferedWriter(fw);
 				 PrintWriter out = new PrintWriter(bw)){
@@ -104,6 +106,7 @@ public class AddItemWindow extends JFrame {
 				// Closes the window when the button is pressed
 				this.dispose();
 				JOptionPane.showMessageDialog(this, "File Added Successfully");
+
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(this, "The File was not added Successfully");
 				e.printStackTrace();
