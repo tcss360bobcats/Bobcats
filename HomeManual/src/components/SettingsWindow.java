@@ -47,8 +47,6 @@ public class SettingsWindow extends JFrame {
 		 * @author Andrew Lim
 		 */		
 		try {
-			//ObjectInputStream ois = new ObjectInputStream(this.getClass().getResource("/files/testItemFile.txt").openStream());
-
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./res/files/profile.ser"));
 	        user = (User) ois.readObject();
 	        ois.close();
@@ -77,15 +75,12 @@ public class SettingsWindow extends JFrame {
 		JPanel center = new JPanel();	
 		center.add(importButton);
 		center.add(exportButton);
-//		master.add(center, BorderLayout.CENTER);
 		JPanel importForm = importForm();
 		JPanel exportForm = exportForm();
 		importForm.setVisible(false);
 		exportForm.setVisible(false);
 		JPanel south = new JPanel();
 		successErrorMessage = new JLabel();
-//		south.add(importForm);
-//		south.add(exportForm);
 		center.add(importForm);
 		center.add(exportForm);
 		south.add(successErrorMessage);
