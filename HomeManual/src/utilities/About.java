@@ -44,7 +44,6 @@ public class About {
 		}
 		writer.println(updateDate);
 		writer.close();
-		System.out.println(updateDate);
 	}
 	
 	/**
