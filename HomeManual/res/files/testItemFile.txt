@@ -5,9 +5,5 @@ Guitar, res/pdf/Steel_Restring.pdf, Strings Change Broken zz
 Keyword, res/pdf/c4611_sample_explain.pdf, Keyword Sample zz
 Bionicle, res/pdf/BioniclesManual.pdf, Bionicle Toy zz
 Deliverable, res/pdf/Bobcats-Deliverable1.pdf, Deliverable Bobcats CheckIn zz
-CheckIn, res/pdf/checkin-3.pdf, Deliverable CheckIn Check zz
-A, D:\Downloads\Books&Resources\Books\CPH.pdf, A 
-B, D:\Downloads\Books&Resources\Books\CPH.pdf, B 
 Room, D:\Downloads\Books&Resources\Books\CPH.pdf, A Tag 
-A, D:\Downloads\Books&Resources\UWT\TCSS360\programBobcats\Bobcats\HomeManual\res\pdf\31VA3800.pdf, A 
-A, D:\Downloads\Books&Resources\UWT\TCSS360\programBobcats\Bobcats\HomeManual\res\pdf\BioniclesManual.pdf, A 
+Another, D:\Downloads\Books&Resources\Books\Cormen_Algorithms_3rd.pdf, Room 

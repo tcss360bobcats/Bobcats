@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -96,17 +95,13 @@ public class FilePanel extends JPanel {
 					Object nodeObject = node.getUserObject();
 					if(node.isLeaf()) {
 						Item item = (Item) nodeObject;
-<<<<<<< HEAD
 						try {
-							myDisplay.setDisplay(item.getFile().toURL());
-						} catch (MalformedURLException e1) {
+							myDisplay.setDisplay(item.getFile().toString());
+						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-=======
-						myDisplay.setDisplay(item.getFile());
-						
->>>>>>> c2f970cd74ac77e1a3c3f1394c177ee0829c3824
+
 					}
 	    		}
 	    	}
